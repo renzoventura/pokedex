@@ -6,7 +6,7 @@ import 'package:pokedex/models/pokemon_details.dart';
 import 'package:pokedex/screens/base_view_model.dart';
 
 class DexViewModel extends BaseViewModel {
-  PokemonDetail pokemonDetail;
+  PokemonDetails pokemonDetail;
   init() {
     pokemonDetail = null;
   }
@@ -14,14 +14,12 @@ class DexViewModel extends BaseViewModel {
   getPokemon() async {
     setBusy();
     try {
-      print("getting them pokemons!");
-      Either<Problem, PokemonDetail> response =
+      Either<Problem, PokemonDetails> response =
           await pokemonService.getPokemonDetailById();
       if (response.isRight) {
         pokemonDetail = response.right.value;
         print(response.right.value.toJson().toString());
       } else {
-        print("network failed");
       }
     } catch (e) {
       log(e.toString());

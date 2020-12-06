@@ -1,6 +1,15 @@
-class PokemonDetail {
+import 'dart:convert';
+
+PokemonDetails pokemonDetailsResponseFromJson(String str) =>
+    PokemonDetails.fromJson(json.decode(str));
+
+String pokemonDetailsResponseToJson(PokemonDetails data) =>
+    json.encode(data.toJson());
+
+class PokemonDetails {
   List<Abilities> abilities;
   int baseExperience;
+  List<Forms> forms;
   List<GameIndices> gameIndices;
   int height;
   List<HeldItems> heldItems;
@@ -16,25 +25,26 @@ class PokemonDetail {
   List<Types> types;
   int weight;
 
-  PokemonDetail(
+  PokemonDetails(
       {this.abilities,
-        this.baseExperience,
-        this.gameIndices,
-        this.height,
-        this.heldItems,
-        this.id,
-        this.isDefault,
-        this.locationAreaEncounters,
-        this.moves,
-        this.name,
-        this.order,
-        this.species,
-        this.sprites,
-        this.stats,
-        this.types,
-        this.weight});
+      this.baseExperience,
+      this.forms,
+      this.gameIndices,
+      this.height,
+      this.heldItems,
+      this.id,
+      this.isDefault,
+      this.locationAreaEncounters,
+      this.moves,
+      this.name,
+      this.order,
+      this.species,
+      this.sprites,
+      this.stats,
+      this.types,
+      this.weight});
 
-  PokemonDetail.fromJson(Map<String, dynamic> json) {
+  PokemonDetails.fromJson(Map<String, dynamic> json) {
     if (json['abilities'] != null) {
       abilities = new List<Abilities>();
       json['abilities'].forEach((v) {
@@ -42,6 +52,12 @@ class PokemonDetail {
       });
     }
     baseExperience = json['base_experience'];
+    if (json['forms'] != null) {
+      forms = new List<Forms>();
+      json['forms'].forEach((v) {
+        forms.add(new Forms.fromJson(v));
+      });
+    }
     if (json['game_indices'] != null) {
       gameIndices = new List<GameIndices>();
       json['game_indices'].forEach((v) {
@@ -67,9 +83,9 @@ class PokemonDetail {
     name = json['name'];
     order = json['order'];
     species =
-    json['species'] != null ? new Ability.fromJson(json['species']) : null;
+        json['species'] != null ? new Ability.fromJson(json['species']) : null;
     sprites =
-    json['sprites'] != null ? new Sprites.fromJson(json['sprites']) : null;
+        json['sprites'] != null ? new Sprites.fromJson(json['sprites']) : null;
     if (json['stats'] != null) {
       stats = new List<Stats>();
       json['stats'].forEach((v) {
@@ -91,6 +107,9 @@ class PokemonDetail {
       data['abilities'] = this.abilities.map((v) => v.toJson()).toList();
     }
     data['base_experience'] = this.baseExperience;
+    if (this.forms != null) {
+      data['forms'] = this.forms.map((v) => v.toJson()).toList();
+    }
     if (this.gameIndices != null) {
       data['game_indices'] = this.gameIndices.map((v) => v.toJson()).toList();
     }
@@ -132,7 +151,7 @@ class Abilities {
 
   Abilities.fromJson(Map<String, dynamic> json) {
     ability =
-    json['ability'] != null ? new Ability.fromJson(json['ability']) : null;
+        json['ability'] != null ? new Ability.fromJson(json['ability']) : null;
     isHidden = json['is_hidden'];
     slot = json['slot'];
   }
@@ -176,7 +195,7 @@ class GameIndices {
   GameIndices.fromJson(Map<String, dynamic> json) {
     gameIndex = json['game_index'];
     version =
-    json['version'] != null ? new Ability.fromJson(json['version']) : null;
+        json['version'] != null ? new Ability.fromJson(json['version']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -227,7 +246,7 @@ class VersionDetails {
   VersionDetails.fromJson(Map<String, dynamic> json) {
     rarity = json['rarity'];
     version =
-    json['version'] != null ? new Ability.fromJson(json['version']) : null;
+        json['version'] != null ? new Ability.fromJson(json['version']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -314,15 +333,15 @@ class Sprites {
 
   Sprites(
       {this.backDefault,
-        this.backFemale,
-        this.backShiny,
-        this.backShinyFemale,
-        this.frontDefault,
-        this.frontFemale,
-        this.frontShiny,
-        this.frontShinyFemale,
-        this.other,
-        this.versions});
+      this.backFemale,
+      this.backShiny,
+      this.backShinyFemale,
+      this.frontDefault,
+      this.frontFemale,
+      this.frontShiny,
+      this.frontShinyFemale,
+      this.other,
+      this.versions});
 
   Sprites.fromJson(Map<String, dynamic> json) {
     backDefault = json['back_default'];
@@ -388,7 +407,7 @@ class Other {
 
 class DreamWorld {
   String frontDefault;
-  Null frontFemale;
+  String frontFemale;
 
   DreamWorld({this.frontDefault, this.frontFemale});
 
@@ -433,13 +452,13 @@ class Versions {
 
   Versions(
       {this.generationI,
-        this.generationIi,
-        this.generationIii,
-        this.generationIv,
-        this.generationV,
-        this.generationVi,
-        this.generationVii,
-        this.generationViii});
+      this.generationIi,
+      this.generationIii,
+      this.generationIv,
+      this.generationV,
+      this.generationVi,
+      this.generationVii,
+      this.generationViii});
 
   Versions.fromJson(Map<String, dynamic> json) {
     generationI = json['generation-i'] != null
@@ -509,7 +528,7 @@ class GenerationI {
         ? new RedBlue.fromJson(json['red-blue'])
         : null;
     yellow =
-    json['yellow'] != null ? new RedBlue.fromJson(json['yellow']) : null;
+        json['yellow'] != null ? new RedBlue.fromJson(json['yellow']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -558,10 +577,10 @@ class GenerationIi {
 
   GenerationIi.fromJson(Map<String, dynamic> json) {
     crystal =
-    json['crystal'] != null ? new Crystal.fromJson(json['crystal']) : null;
+        json['crystal'] != null ? new Crystal.fromJson(json['crystal']) : null;
     gold = json['gold'] != null ? new Crystal.fromJson(json['gold']) : null;
     silver =
-    json['silver'] != null ? new Crystal.fromJson(json['silver']) : null;
+        json['silver'] != null ? new Crystal.fromJson(json['silver']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -614,7 +633,7 @@ class GenerationIii {
 
   GenerationIii.fromJson(Map<String, dynamic> json) {
     emerald =
-    json['emerald'] != null ? new Emerald.fromJson(json['emerald']) : null;
+        json['emerald'] != null ? new Emerald.fromJson(json['emerald']) : null;
     fireredLeafgreen = json['firered-leafgreen'] != null
         ? new Crystal.fromJson(json['firered-leafgreen'])
         : null;
@@ -703,13 +722,13 @@ class DiamondPearl {
 
   DiamondPearl(
       {this.backDefault,
-        this.backFemale,
-        this.backShiny,
-        this.backShinyFemale,
-        this.frontDefault,
-        this.frontFemale,
-        this.frontShiny,
-        this.frontShinyFemale});
+      this.backFemale,
+      this.backShiny,
+      this.backShinyFemale,
+      this.frontDefault,
+      this.frontFemale,
+      this.frontShiny,
+      this.frontShinyFemale});
 
   DiamondPearl.fromJson(Map<String, dynamic> json) {
     backDefault = json['back_default'];
@@ -769,14 +788,14 @@ class BlackWhite {
 
   BlackWhite(
       {this.animated,
-        this.backDefault,
-        this.backFemale,
-        this.backShiny,
-        this.backShinyFemale,
-        this.frontDefault,
-        this.frontFemale,
-        this.frontShiny,
-        this.frontShinyFemale});
+      this.backDefault,
+      this.backFemale,
+      this.backShiny,
+      this.backShinyFemale,
+      this.frontDefault,
+      this.frontFemale,
+      this.frontShiny,
+      this.frontShinyFemale});
 
   BlackWhite.fromJson(Map<String, dynamic> json) {
     animated = json['animated'] != null
@@ -844,9 +863,9 @@ class OmegarubyAlphasapphire {
 
   OmegarubyAlphasapphire(
       {this.frontDefault,
-        this.frontFemale,
-        this.frontShiny,
-        this.frontShinyFemale});
+      this.frontFemale,
+      this.frontShiny,
+      this.frontShinyFemale});
 
   OmegarubyAlphasapphire.fromJson(Map<String, dynamic> json) {
     frontDefault = json['front_default'];
@@ -873,7 +892,7 @@ class GenerationVii {
 
   GenerationVii.fromJson(Map<String, dynamic> json) {
     icons =
-    json['icons'] != null ? new DreamWorld.fromJson(json['icons']) : null;
+        json['icons'] != null ? new DreamWorld.fromJson(json['icons']) : null;
     ultraSunUltraMoon = json['ultra-sun-ultra-moon'] != null
         ? new OmegarubyAlphasapphire.fromJson(json['ultra-sun-ultra-moon'])
         : null;
@@ -898,7 +917,7 @@ class GenerationViii {
 
   GenerationViii.fromJson(Map<String, dynamic> json) {
     icons =
-    json['icons'] != null ? new DreamWorld.fromJson(json['icons']) : null;
+        json['icons'] != null ? new DreamWorld.fromJson(json['icons']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -951,6 +970,25 @@ class Types {
     if (this.type != null) {
       data['type'] = this.type.toJson();
     }
+    return data;
+  }
+}
+
+class Forms {
+  String name;
+  String url;
+
+  Forms({this.name, this.url});
+
+  Forms.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    url = json['url'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['url'] = this.url;
     return data;
   }
 }

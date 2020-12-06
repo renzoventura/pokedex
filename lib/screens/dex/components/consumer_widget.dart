@@ -12,9 +12,13 @@ class ConsumerWidget extends StatelessWidget {
           InkWell(
             onTap: () => dexViewModel.getPokemon(),
             child: Container(
-              color: Colors.blue,
-              child: Text(
-                "TAP ME",
+              height: 200,
+              width: 200,
+              color: Colors.blue.shade200,
+              child: Center(
+                child: Text(
+                  "TAP ME",
+                ),
               ),
             ),
           ),
