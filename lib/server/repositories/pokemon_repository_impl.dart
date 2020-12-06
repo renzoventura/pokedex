@@ -30,7 +30,7 @@ class PokemonRepositoryImpl extends PokemonRepository {
   @override
   Future<Either<Problem, PokemonDetail>> getPokemonDetailById() async {
     try {
-      Response response = await pokemonService.getListOfPokemon();
+      Response response = await pokemonService.getPokemonDetail();
       if (response.isSuccess) {
         return Right(PokemonDetail.fromJson(response.data));
       } else {

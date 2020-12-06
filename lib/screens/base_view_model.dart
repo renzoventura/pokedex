@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:pokedex/di/setup_dependencies.dart';
-import 'package:pokedex/server/dio/pokemon_service.dart';
+import 'package:pokedex/server/repositories/pokemon_repository.dart';
+import 'package:pokedex/server/repositories/pokemon_repository_impl.dart';
 
 abstract class BaseViewModel extends ChangeNotifier {
-  PokemonService pokemonService = getIt<PokemonService>();
+  PokemonRepositoryImpl pokemonService = getIt<PokemonRepository>();
   bool isBusy = false;
 
   setBusy() {

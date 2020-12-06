@@ -10,7 +10,7 @@ class ConsumerWidget extends StatelessWidget {
       return Column(
         children: [
           InkWell(
-            onTap: dexViewModel.getPokemon(),
+            onTap: () => dexViewModel.getPokemon(),
             child: Container(
               color: Colors.blue,
               child: Text(
@@ -20,10 +20,9 @@ class ConsumerWidget extends StatelessWidget {
           ),
           SizedBox(height: 20),
           if(dexViewModel.pokemonDetail != null)
-            Text(dexViewModel.pokemonDetail.name),
+            Text(dexViewModel.pokemonDetail.name ?? "null :("),
         ],
       );
-
     });
   }
 }
