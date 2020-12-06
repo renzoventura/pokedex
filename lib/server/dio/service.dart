@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-class service {
+class Service {
   final Dio _dio = Dio();
 
 
