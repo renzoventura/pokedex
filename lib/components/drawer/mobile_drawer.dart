@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/components/container_with_background.dart';
 import 'package:pokedex/components/drawer/drawer_labels.dart';
 import 'package:pokedex/components/fade_in_image_container.dart';
 import 'package:pokedex/components/user_profile_picture.dart';
@@ -10,24 +11,11 @@ import 'package:pokedex/utils/image_utils.dart';
 class MobileDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    closeDrawerAndNavigate(Function onNavigate) {
-      print("closing");
-      Navigator.of(context).pop();
-      print("closed");
-      onNavigate?.call();
-    }
-
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Drawer(
-        child: Container(
-          decoration: BoxDecoration(
-            color: PRIMARY_COLOR,
-            image: DecorationImage(
-              image: AssetImage(ImageUtils.PIKACHU_BACKGROUND),
-              // fit: BoxFit.cover,
-            ),
-          ),
+        child: ContainerWithBackground(
+          color: PRIMARY_COLOR,
           child: Column(
             children: [
               Row(
@@ -50,8 +38,10 @@ class MobileDrawer extends StatelessWidget {
                   children: [
                     DrawerLabels(
                       label: POKEDEX,
-                      onTap: closeDrawerAndNavigate(
-                          () => Navigator.pushNamed(context, PokeDexScreen.id)),
+                      onTap: () {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, PokeDexScreen.id);
+                      },
                       targetScreen: PokeDexScreen.id,
                     ),
                     SizedBox(
@@ -59,8 +49,10 @@ class MobileDrawer extends StatelessWidget {
                     ),
                     DrawerLabels(
                       label: PARTY,
-                      onTap: closeDrawerAndNavigate(
-                          () => Navigator.pushNamed(context, PartyScreen.id)),
+                      onTap: () {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, PartyScreen.id);
+                      },
                       targetScreen: PartyScreen.id,
                     ),
                   ],
