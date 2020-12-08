@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/utils/image_utils.dart';
 
 class ContainerWithBackground extends StatelessWidget {
@@ -9,6 +10,11 @@ class ContainerWithBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(
+        top: kMarginXL,
+        left: kMarginXL,
+        right: kMarginXL,
+      ),
       decoration: BoxDecoration(
         color: color,
         image: DecorationImage(

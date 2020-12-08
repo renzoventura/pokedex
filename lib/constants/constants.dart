@@ -1,8 +1,9 @@
-//labels
 import 'package:flutter/material.dart';
 
+//labels
 const POKEDEX = "POKEDEX";
 const PARTY = "PARTY";
+const CHOOSE_TEAM = "Choose \n your team";
 
 //margins
 const double kMarginXS = 8.0;
@@ -51,7 +52,23 @@ const TextStyle drawerIcon = TextStyle(
   fontFamily: 'WorkSans',
   fontWeight: FontWeight.w700,
   fontSize: 30,
-  //update opacity 60 default
 );
+
+const TextStyle chooseYourTeamTextStyle = TextStyle(
+  fontFamily: 'Moret',
+  fontWeight: FontWeight.w700,
+  fontSize: 36,
+);
+
 //colors
 const Color PRIMARY_COLOR = Color(0xff333333);
+
+//pokemon per page
+const int POKEMON_LIST_LIMIT = 10;
+const int MINIMUM_GRID_SIZE = 2;
+
+//threshold
+const int SCROLL_THRESHOLD = 500;
+
+//duration
+const int FADE_IN_DURATION = 500;

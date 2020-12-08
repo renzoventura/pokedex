@@ -15,15 +15,15 @@ class PokemonService {
 
   ///[ip]/api/v2/pokemon/
   ///get list of pokemons
-  Future<dynamic> getListOfPokemon() {
-    String path = "/pokemon";
+  Future<dynamic> getListOfPokemon(int offset, int limit) {
+    String path = "/pokemon/?offset=$offset&limit=$limit";
     return _dio.get(buildUrl(path));
   }
 
-  ///[ip]/api/v2/pokemon/[id]
+  ///[ip]/api/v2/pokemon/[name]
   ///get list of pokemons
-  Future<dynamic> getPokemonDetail() {
-    String path = "/pokemon/12";
+  Future<dynamic> getPokemonDetailByName(String pokemonName) {
+    String path = "/pokemon/$pokemonName";
     return _dio.get(buildUrl(path));
   }
 }
