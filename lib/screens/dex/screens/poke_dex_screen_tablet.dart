@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/components/container_with_background.dart';
+import 'package:pokedex/components/current_party/current_party.dart';
 import 'file:///C:/Users/Renzo/Documents/RENZO/CV2020/pokedex/lib/components/app_bar/tablet_app_bar.dart';
-import 'package:pokedex/components/fade_in_image_container.dart';
-import 'package:pokedex/utils/image_utils.dart';
+import 'package:pokedex/constants/constants.dart';
+import 'package:pokedex/screens/dex/components/pokemon_list_container.dart';
 
 class PokeDexScreenTablet extends StatelessWidget {
   @override
@@ -11,17 +12,28 @@ class PokeDexScreenTablet extends StatelessWidget {
       child: Scaffold(
         appBar: TabletAppBar(),
         body: ContainerWithBackground(
-          child: Center(
-            child: Column(
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: kMarginXL,
+              right: kMarginXL,
+            ),
+            child: Row(
               children: [
-                Text(
-                  "PokeDexTablet",
+                Column(
+                  children: [
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          CHOOSE_TEAM,
+                          style: chooseYourTeamTextStyle,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                FadeInImageContainer(
-                  image: AssetImage(
-                    ImageUtils.JM_LOGO,
-                  ),
-                ),
+                Expanded(child: PokemonListContainer()),
+                CurrentParty(),
               ],
             ),
           ),

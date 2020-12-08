@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/models/pokemon_details.dart';
+import 'package:pokedex/screens/dex/components/pokemon_detail_container.dart';
 import 'package:pokedex/screens/dex/view_model/dex_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +20,8 @@ class _PokemonListContainerState extends State<PokemonListContainer> {
   void _scrollListener() {
     DexViewModel dexViewModel =
         Provider.of<DexViewModel>(context, listen: false);
-    if (controller.position.extentAfter < SCROLL_THRESHOLD && !dexViewModel.isBusy) {
+    if (controller.position.extentAfter < SCROLL_THRESHOLD &&
+        !dexViewModel.isBusy) {
       dexViewModel.getPokemonList();
     }
   }
@@ -41,7 +43,8 @@ class _PokemonListContainerState extends State<PokemonListContainer> {
           List<Widget> pokemonWidgets = [];
           if (dexViewModel.pokemonDetails != null) {
             for (PokemonDetails pokemon in dexViewModel.pokemonDetails) {
-              pokemonWidgets.add(Text(pokemon.name));
+              pokemonWidgets
+                  .add(PokemonDetailContainer(pokemonDetails: pokemon));
             }
           }
           return pokemonWidgets;
@@ -52,40 +55,40 @@ class _PokemonListContainerState extends State<PokemonListContainer> {
                 child: CircularProgressIndicator(),
               )
             : Column(
-              children: [
-                Expanded(
-                  child: CustomScrollView(
-                    controller: controller,
-                    primary: false,
-                    slivers: <Widget>[
-                      SliverPadding(
-                        padding: const EdgeInsets.all(kMargin),
-                        sliver: SliverGrid.count(
-                          crossAxisCount: widget.gridSize,
-                          children: getPokemonList(),
+                children: [
+                  Expanded(
+                    child: CustomScrollView(
+                      controller: controller,
+                      primary: false,
+                      slivers: <Widget>[
+                        SliverPadding(
+                          padding: const EdgeInsets.symmetric(vertical: kMarginXXXXL),
+                          sliver: SliverGrid.count(
+                            crossAxisCount: widget.gridSize,
+                            children: getPokemonList(),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                if (dexViewModel.isBusy)
-                  Padding(
-                    padding: const EdgeInsets.all(kMargin),
-                    child: Center(
-                      child: CircularProgressIndicator(),
+                      ],
                     ),
                   ),
-                // Expanded(
-                //   child: ListView.builder
-                //     (
-                //       itemCount: dexViewModel.pokemonDetails.length,
-                //       itemBuilder: (BuildContext context, int index) {
-                //         return new Text(dexViewModel.pokemonDetails[index].name);
-                //       }
-                //   ),
-                // ),
-              ],
-            );
+                  if (dexViewModel.isBusy)
+                    Padding(
+                      padding: const EdgeInsets.all(kMargin),
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                  // Expanded(
+                  //   child: ListView.builder
+                  //     (
+                  //       itemCount: dexViewModel.pokemonDetails.length,
+                  //       itemBuilder: (BuildContext context, int index) {
+                  //         return new Text(dexViewModel.pokemonDetails[index].name);
+                  //       }
+                  //   ),
+                  // ),
+                ],
+              );
       },
     );
   }

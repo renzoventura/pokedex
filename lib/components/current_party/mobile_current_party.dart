@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/utils/image_utils.dart';
 
-class CurrentPartyList extends StatefulWidget {
+class MobileCurrentParty extends StatefulWidget {
   @override
-  _CurrentPartyListState createState() => _CurrentPartyListState();
+  _MobileCurrentPartyState createState() => _MobileCurrentPartyState();
 }
 
-class _CurrentPartyListState extends State<CurrentPartyList> {
+class _MobileCurrentPartyState extends State<MobileCurrentParty> {
   @override
   Widget build(BuildContext context) {
     return Padding(
