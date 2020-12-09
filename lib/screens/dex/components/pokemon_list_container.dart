@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/models/pokemon_details.dart';
-import 'package:pokedex/screens/dex/components/pokemon_detail_container.dart';
+import 'file:///C:/Users/Renzo/Documents/RENZO/CV2020/pokedex/lib/components/pokemon_container/pokemon_detail_container.dart';
 import 'package:pokedex/screens/dex/view_model/dex_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -57,18 +57,11 @@ class _PokemonListContainerState extends State<PokemonListContainer> {
             : Column(
                 children: [
                   Expanded(
-                    child: CustomScrollView(
+                    child: GridView.count(
                       controller: controller,
-                      primary: false,
-                      slivers: <Widget>[
-                        SliverPadding(
-                          padding: const EdgeInsets.symmetric(vertical: kMarginXXXXL),
-                          sliver: SliverGrid.count(
-                            crossAxisCount: widget.gridSize,
-                            children: getPokemonList(),
-                          ),
-                        ),
-                      ],
+                      crossAxisCount: widget.gridSize,
+            mainAxisSpacing: 78,
+            children: getPokemonList(),
                     ),
                   ),
                   if (dexViewModel.isBusy)

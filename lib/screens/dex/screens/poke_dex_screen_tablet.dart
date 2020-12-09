@@ -25,7 +25,7 @@ class PokeDexScreenTablet extends StatelessWidget {
                       child: Center(
                         child: Text(
                           CHOOSE_TEAM,
-                          style: chooseYourTeamTextStyle,
+                          style: CHOOSE_YOUR_TEAM_TEXT_STYLE,
                           textAlign: TextAlign.left,
                         ),
                       ),

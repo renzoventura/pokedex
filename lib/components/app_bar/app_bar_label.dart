@@ -20,11 +20,11 @@ class AppBarLabel extends StatelessWidget {
     return InkWell(
       onTap: isInCurrentScreen ? null : onTap,
       child: Opacity(
-        opacity: isInCurrentScreen ? fullOpacity : sixtyPercentOpacity,
+        opacity: isInCurrentScreen ? FULL_OPACITY : SIXTY_PERCENT_OPACITY,
         child: Center(
           child: Text(
             label ?? '',
-            style: appBarLabelTextStyle,
+            style: APP_BAR_LABEL_TEXT_STYLE,
           ),
         ),
       ),

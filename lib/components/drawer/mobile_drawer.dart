@@ -30,7 +30,7 @@ class MobileDrawer extends StatelessWidget {
                 ],
               ),
               UserProfilePicture(
-                radius: drawerProfilePicRadius,
+                radius: DRAWER_PROFILE_RADIUS,
               ),
               Expanded(
                 child: Column(

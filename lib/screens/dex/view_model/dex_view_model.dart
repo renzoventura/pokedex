@@ -33,6 +33,10 @@ class DexViewModel extends BaseViewModel {
   getPokemonList() async {
     setBusy();
     try {
+      // int length = pokemonDetails.length;
+      // if (length >= config.numberOfPokemons) {
+      //   length = config.numberOfPokemons - length;
+      // }
       Either<Problem, PokemonPageResponse> response =
           await pokemonService.getPokemonList(pokemonDetails.length, POKEMON_LIST_LIMIT);
       if (response.isRight) {

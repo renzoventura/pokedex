@@ -32,7 +32,7 @@ class TabletAppBar extends StatelessWidget implements PreferredSizeWidget {
           width: appbarLabelPadding,
         ),
         UserProfilePicture(
-          radius: appbarProfilePicRadius,
+          radius: APP_BAR_PROFILE_RADIUS,
         ),
         SizedBox(
           width: logoAppBarEndingMobilePadding,

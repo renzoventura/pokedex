@@ -7,6 +7,7 @@ class ImageUtils {
   static const PIKACHU_BACKGROUND = IMAGE_PATH + "bg_pikachu.png";
   static const PARTY_PLACEHOLDER_LARGE = IMAGE_PATH + "party_placeholder_large.png";
   static const PARTY_PLACEHOLDER_SMALL = IMAGE_PATH + "party_placeholder_small.png";
+  static const HALF_POKEBALL = IMAGE_PATH + "half_pokeball.png";
 
 }
 

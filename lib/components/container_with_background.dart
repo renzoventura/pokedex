@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/utils/image_utils.dart';
 
 class ContainerWithBackground extends StatelessWidget {
