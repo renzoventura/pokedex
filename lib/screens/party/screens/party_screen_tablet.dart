@@ -5,14 +5,12 @@ import 'package:pokedex/components/container_with_background.dart';
 class PartyScreenTablet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: TabletAppBar(),
-        body: ContainerWithBackground(
-          child: Center(
-            child: Text(
-              "PartyScreenTablet",
-            ),
+    return Scaffold(
+      appBar: TabletAppBar(),
+      body: ContainerWithBackground(
+        child: Center(
+          child: Text(
+            "PartyScreenTablet",
           ),
         ),
       ),

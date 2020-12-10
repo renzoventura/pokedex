@@ -8,12 +8,14 @@ class PartyScreen extends StatelessWidget {
   static const id = "/partyScreen";
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout(
-      mobile: OrientationLayout(
-        portrait: PartyScreenMobile(),
-        landscape: PartyScreenTablet(),
+    return SafeArea(
+      child: ScreenTypeLayout(
+        mobile: OrientationLayout(
+          portrait: PartyScreenMobile(),
+          landscape: PartyScreenTablet(),
+        ),
+        tablet: PartyScreenTablet(),
       ),
-      tablet: PartyScreenTablet(),
     );
   }
 }

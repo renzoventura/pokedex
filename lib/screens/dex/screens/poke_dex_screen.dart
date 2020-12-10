@@ -8,12 +8,14 @@ class PokeDexScreen extends StatelessWidget {
   static const id = "/pokeDexScreen";
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout(
-      mobile: OrientationLayout(
-        portrait: PokeDexScreenMobile(),
-        landscape: PokeDexScreenTablet(),
+    return SafeArea(
+      child: ScreenTypeLayout(
+        mobile: OrientationLayout(
+          portrait: PokeDexScreenMobile(),
+          landscape: PokeDexScreenTablet(),
+        ),
+        tablet: PokeDexScreenTablet(),
       ),
-      tablet: PokeDexScreenTablet(),
     );
   }
 }

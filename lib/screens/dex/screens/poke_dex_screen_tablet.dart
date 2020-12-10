@@ -8,34 +8,32 @@ import 'package:pokedex/screens/dex/components/pokemon_list_container.dart';
 class PokeDexScreenTablet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: TabletAppBar(),
-        body: ContainerWithBackground(
-          child: Padding(
-            padding: EdgeInsets.only(
-              left: kMarginXL,
-              right: kMarginXL,
-            ),
-            child: Row(
-              children: [
-                Column(
-                  children: [
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          CHOOSE_TEAM,
-                          style: CHOOSE_YOUR_TEAM_TEXT_STYLE,
-                          textAlign: TextAlign.left,
-                        ),
+    return Scaffold(
+      appBar: TabletAppBar(),
+      body: ContainerWithBackground(
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: kMarginXL,
+            right: kMarginXL,
+          ),
+          child: Row(
+            children: [
+              Column(
+                children: [
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        CHOOSE_TEAM,
+                        style: CHOOSE_YOUR_TEAM_TEXT_STYLE,
+                        textAlign: TextAlign.left,
                       ),
                     ),
-                  ],
-                ),
-                Expanded(child: PokemonListContainer()),
-                CurrentParty(),
-              ],
-            ),
+                  ),
+                ],
+              ),
+              Expanded(child: PokemonListContainer()),
+              CurrentParty(),
+            ],
           ),
         ),
       ),
