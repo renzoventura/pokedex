@@ -22,7 +22,7 @@ class _PokemonListContainerState extends State<PokemonListContainer> {
         Provider.of<DexViewModel>(context, listen: false);
     if (controller.position.extentAfter < SCROLL_THRESHOLD &&
         !dexViewModel.isBusy) {
-      dexViewModel.getPokemonList();
+      dexViewModel.getPokemons();
     }
   }
 

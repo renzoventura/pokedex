@@ -14,37 +14,43 @@ class DexViewModel extends BaseViewModel {
 
   init() {
     pokemonPageResponse = null;
-    if (pokemonDetails.isEmpty) getPokemonList();
+    if (pokemonDetails.isEmpty) getPokemons();
   }
 
-  getPokemonById(String pokemonName) async {
+  getPokemonByIdAndAdd(String pokemonName) async {
     try {
       Either<Problem, PokemonDetails> response =
           await pokemonService.getPokemonDetailByName(pokemonName);
-      if (response.isRight) {
-        pokemonDetails.add(response.right.value);
-      } else {}
+      if (response.isRight) pokemonDetails.add(response.right.value);
     } catch (e) {
       log(e.toString());
     }
   }
 
-  getPokemonList() async {
+  getPokemons() async {
+    if (pokemonDetails.length < config.numberOfPokemons) {
+      int numberOfPokemonToGet = POKEMON_LIST_LIMIT;
+      if ((config.numberOfPokemons - pokemonDetails.length) <
+          POKEMON_LIST_LIMIT) {
+        numberOfPokemonToGet =
+            (config.numberOfPokemons - pokemonDetails.length);
+      }
+      await getPokemonListWithDetails(numberOfPokemonToGet);
+    }
+  }
+
+  getPokemonListWithDetails(int numberOfPokemons) async {
     setBusy();
     try {
-      // int length = pokemonDetails.length;
-      // if (length >= config.numberOfPokemons) {
-      //   length = config.numberOfPokemons - length;
-      // }
       Either<Problem, PokemonPageResponse> response = await pokemonService
-          .getPokemonList(pokemonDetails.length, POKEMON_LIST_LIMIT);
+          .getPokemonList(pokemonDetails.length, numberOfPokemons);
       if (response.isRight) {
         pokemonPageResponse = response.right.value;
         for (Results result in pokemonPageResponse.results) {
           if (result?.name?.isNotNullOrNotEmpty ?? false)
-            await getPokemonById(result?.name);
+            await getPokemonByIdAndAdd(result?.name);
         }
-      } else {}
+      }
     } catch (e) {
       log(e.toString());
     } finally {
