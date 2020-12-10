@@ -40,7 +40,7 @@ class MobileDrawer extends StatelessWidget {
                       label: POKEDEX,
                       onTap: () {
                         Navigator.pop(context);
-                        Navigator.of(context).pushNamedAndRemoveUntil(
+                        Navigator.pushNamedAndRemoveUntil(context,
                             PokeDexScreen.id, (Route<dynamic> route) => false);
                       },
                       targetScreen: PokeDexScreen.id,
@@ -52,7 +52,7 @@ class MobileDrawer extends StatelessWidget {
                       label: PARTY,
                       onTap: () {
                         Navigator.pop(context);
-                        Navigator.of(context).pushNamedAndRemoveUntil(
+                        Navigator.pushNamedAndRemoveUntil(context,
                             PartyScreen.id, (Route<dynamic> route) => false);
                       },
                       targetScreen: PartyScreen.id,

@@ -17,8 +17,8 @@ class PokeDexScreenMobile extends StatelessWidget {
       child: Scaffold(
         floatingActionButton: FloatingButtonNavigator(
           title: PARTY_BUTTON_LABEL,
-          onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
-              PartyScreen.id, ModalRoute.withName(PokeDexScreen.id)),
+          onTap: () => Navigator.pushNamedAndRemoveUntil(
+              context, PartyScreen.id, ModalRoute.withName(PokeDexScreen.id)),
         ),
         appBar: MobileAppBar(),
         endDrawer: MobileDrawer(),
@@ -45,7 +45,9 @@ class PokeDexScreenMobile extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: kMarginXL),
                   child: CurrentParty(),
                 ),
-                Expanded(child: PokemonListContainer()),
+                Expanded(
+                  child: PokemonListContainer(),
+                ),
               ],
             ),
           ),

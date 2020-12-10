@@ -23,7 +23,7 @@ class PokemonDetailContainer extends StatelessWidget {
       child: ColumnSuper(
         alignment: Alignment.center,
         invert: true,
-        innerDistance: OVERLAY_DISTANCE,
+        innerDistance: OVERLAY_DISTANCE_POKEMON,
         children: [
           CachedNetworkImage(
             imageUrl: pokemonDetails.sprites.frontDefault,

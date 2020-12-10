@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 const POKEDEX = "POKEDEX";
 const PARTY = "PARTY";
 const CHOOSE_TEAM = "Choose \n your team";
+const ASH_PARTY = "Ash's \n party";
 const PARTY_BUTTON_LABEL = "Party";
 const DEX_BUTTON_LABEL = "Dex";
 
@@ -44,6 +45,8 @@ const double POKEMON_CONTAINER_HEIGHT = 154;
 const double POKEMON_CONTAINER_WIDTH = 152;
 const double POKEMON_ID_HEIGHT = 18;
 const double POKEMON_ID_WIDTH = 44;
+const double POKEBALL_PLACEHOLDER_RADIUS = 28;
+const double HALF_POKEBALL_WIDTH = 64;
 
 //border radius
 const double kBorderRadiusS = 4.0;
@@ -82,6 +85,7 @@ const TextStyle POKEMON_ID_TEXT_STYLE = TextStyle(
   fontSize: 10,
   color: Color(0xff000000),
 );
+
 const TextStyle POKEMON_TYPE_TEXT_STYLE = TextStyle(
   fontFamily: 'WorkSans',
   fontWeight: FontWeight.w700,
@@ -95,6 +99,14 @@ const TextStyle FLOATING_BUTTON_TITLE = TextStyle(
   fontSize: 12,
   color: Color(0xffFFFFFF),
 );
+
+const TextStyle NUMBER_OF_PARTY = TextStyle(
+  fontFamily: 'WorkSans',
+  fontWeight: FontWeight.w700,
+  fontSize: 24,
+  color: Color(0xff000000),
+);
+
 
 //decoration
 const BoxDecoration POKEMON_CONTAINER = BoxDecoration(
@@ -135,5 +147,5 @@ const int SCROLL_THRESHOLD = 500;
 const int FADE_IN_DURATION = 500;
 
 //pokemon container specific
-const double OVERLAY_DISTANCE = -42.0;
-const double HALF_POKEBALL_WIDTH = 64;
+const double OVERLAY_DISTANCE_POKEMON = -42.0;
+const double OVERLAY_DISTANCE_POKEBALL = -40.0;
