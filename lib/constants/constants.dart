@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 const POKEDEX = "POKEDEX";
 const PARTY = "PARTY";
 const CHOOSE_TEAM = "Choose \n your team";
+const PARTY_BUTTON_LABEL = "Party";
+const DEX_BUTTON_LABEL = "Dex";
 
 //margins
 const double kMarginXXXS = 2.0;
@@ -84,8 +86,14 @@ const TextStyle POKEMON_TYPE_TEXT_STYLE = TextStyle(
   color: Color(0xffFFFFFF),
 );
 
-//decoration
+const TextStyle FLOATING_BUTTON_TITLE = TextStyle(
+  fontFamily: 'Moret',
+  fontWeight: FontWeight.w700,
+  fontSize: 12,
+  color: Color(0xffFFFFFF),
+);
 
+//decoration
 const BoxDecoration POKEMON_CONTAINER = BoxDecoration(
   color: CONTAINER_BACKGROUND,
     borderRadius: BorderRadius.all(
@@ -103,9 +111,15 @@ const BoxDecoration POKEMON_TYPE_CONTAINER = BoxDecoration(
       Radius.circular(kBorderRadiusS),
     ));
 
+BoxDecoration floatingButtonDecoration = BoxDecoration(
+  border: Border.all(color: Colors.white, width: 1),
+  shape: BoxShape.circle,
+);
 //colors
 const Color PRIMARY_COLOR = Color(0xff333333);
 const Color POKEMON_ID_COLOR = Color(0xffE0E0E0);
+const Color CONTAINER_BACKGROUND = Color(0xffF5F5F5);
+const Color FLOATING_BUTTON_NAVIGATOR_COLOR = Color(0xff69A99F);
 
 //pokemon per page
 const int POKEMON_LIST_LIMIT = 10;
@@ -120,4 +134,3 @@ const int FADE_IN_DURATION = 500;
 //pokemon container specific
 const double OVERLAY_DISTANCE = -42.0;
 const double HALF_POKEBALL_WIDTH = 64;
-const Color CONTAINER_BACKGROUND = Color(0xffF5F5F5);

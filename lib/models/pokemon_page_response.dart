@@ -11,7 +11,7 @@ class PokemonPageResponse {
   int count;
   String next;
   String previous;
-  List<Results> results;
+  Set<Results> results;
 
   PokemonPageResponse({this.count, this.next, this.previous, this.results});
 
@@ -20,7 +20,7 @@ class PokemonPageResponse {
     next = json['next'];
     previous = json['previous'];
     if (json['results'] != null) {
-      results = new List<Results>();
+      results = new Set<Results>();
       json['results'].forEach((v) {
         results.add(new Results.fromJson(v));
       });

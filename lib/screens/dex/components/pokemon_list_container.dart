@@ -60,7 +60,7 @@ class _PokemonListContainerState extends State<PokemonListContainer> {
                     child: GridView.count(
                       controller: controller,
                       crossAxisCount: widget.gridSize,
-            mainAxisSpacing: 78,
+            mainAxisSpacing: 78,//asdasdasdasd
             children: getPokemonList(),
                     ),
                   ),

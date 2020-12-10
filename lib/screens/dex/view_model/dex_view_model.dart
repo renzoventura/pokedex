@@ -9,13 +9,12 @@ import 'package:pokedex/screens/base_view_model.dart';
 import 'package:pokedex/utils/extensions/string_extension.dart';
 
 class DexViewModel extends BaseViewModel {
-  List<PokemonDetails> pokemonDetails = [];
+  Set<PokemonDetails> pokemonDetails = {};
   PokemonPageResponse pokemonPageResponse;
 
   init() {
-    pokemonDetails = [];
     pokemonPageResponse = null;
-    getPokemonList();
+    if (pokemonDetails.isEmpty) getPokemonList();
   }
 
   getPokemonById(String pokemonName) async {
@@ -37,8 +36,8 @@ class DexViewModel extends BaseViewModel {
       // if (length >= config.numberOfPokemons) {
       //   length = config.numberOfPokemons - length;
       // }
-      Either<Problem, PokemonPageResponse> response =
-          await pokemonService.getPokemonList(pokemonDetails.length, POKEMON_LIST_LIMIT);
+      Either<Problem, PokemonPageResponse> response = await pokemonService
+          .getPokemonList(pokemonDetails.length, POKEMON_LIST_LIMIT);
       if (response.isRight) {
         pokemonPageResponse = response.right.value;
         for (Results result in pokemonPageResponse.results) {
