@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/Renzo/Documents/RENZO/CV2020/pokedex/lib/components/drawer/mobile_drawer.dart';
-import 'file:///C:/Users/Renzo/Documents/RENZO/CV2020/pokedex/lib/components/app_bar/mobile_app_bar.dart';
+import 'package:pokedex/components/app_bar/mobile_app_bar.dart';
 import 'package:pokedex/components/container_with_background.dart';
+import 'package:pokedex/components/drawer/mobile_drawer.dart';
 import 'package:pokedex/components/floating_button_navigator.dart';
 import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/screens/dex/screens/poke_dex_screen.dart';

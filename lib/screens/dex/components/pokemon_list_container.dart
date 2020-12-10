@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/components/pokemon_container/pokemon_detail_container.dart';
 import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/models/pokemon_details.dart';
-import 'file:///C:/Users/Renzo/Documents/RENZO/CV2020/pokedex/lib/components/pokemon_container/pokemon_detail_container.dart';
 import 'package:pokedex/screens/dex/view_model/dex_view_model.dart';
 import 'package:provider/provider.dart';
 
