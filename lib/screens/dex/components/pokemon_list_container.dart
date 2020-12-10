@@ -54,32 +54,26 @@ class _PokemonListContainerState extends State<PokemonListContainer> {
             ? Center(
                 child: CircularProgressIndicator(),
               )
-            : Column(
+            : Stack(
                 children: [
                   Expanded(
                     child: GridView.count(
                       controller: controller,
                       crossAxisCount: widget.gridSize,
-            mainAxisSpacing: 78,//asdasdasdasd
-            children: getPokemonList(),
+                      mainAxisSpacing: VERTICAL_PADDING_POKEMON,
+                      children: getPokemonList(),
                     ),
                   ),
                   if (dexViewModel.isBusy)
-                    Padding(
-                      padding: const EdgeInsets.all(kMargin),
-                      child: Center(
-                        child: CircularProgressIndicator(),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.all(kMargin),
+                        child: CircularProgressIndicator(
+                          backgroundColor: Colors.transparent,
+                        ),
                       ),
                     ),
-                  // Expanded(
-                  //   child: ListView.builder
-                  //     (
-                  //       itemCount: dexViewModel.pokemonDetails.length,
-                  //       itemBuilder: (BuildContext context, int index) {
-                  //         return new Text(dexViewModel.pokemonDetails[index].name);
-                  //       }
-                  //   ),
-                  // ),
                 ],
               );
       },

@@ -21,6 +21,9 @@ const double kMarginXXXL = 32.0;
 const double kMarginXXXXL = 36.0;
 const double kMarginXXXXXL = 40.0;
 
+//large margins
+const double VERTICAL_PADDING_POKEMON = 78;
+
 //sizedBox
 const double appbarLabelPadding = 52.0;
 
