@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/components/drawer/drawer_button.dart';
 import 'package:pokedex/components/fade_in_image_container.dart';
 import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/utils/image_utils.dart';
@@ -15,10 +16,7 @@ class MobileAppBar extends StatelessWidget implements PreferredSizeWidget {
             padding:
                 EdgeInsets.symmetric(horizontal: logoAppBarEndingMobilePadding),
             child: Center(
-                child: Text(
-              "=",
-              style: drawerIcon,
-            )),
+                child: DrawerButton()),
           ),
         ),
       ],
