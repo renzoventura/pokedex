@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:pokedex/components/pokemon_container/pokemon_detail_container.dart';
 import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/models/pokemon_details.dart';
@@ -50,32 +51,33 @@ class _PokemonListContainerState extends State<PokemonListContainer> {
           return pokemonWidgets;
         }
 
-        return (dexViewModel.isBusy && dexViewModel.pokemonDetails.isEmpty)
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : Stack(
-                children: [
-                  Expanded(
-                    child: GridView.count(
-                      controller: controller,
-                      crossAxisCount: widget.gridSize,
-                      mainAxisSpacing: VERTICAL_PADDING_POKEMON,
-                      children: getPokemonList(),
+        return ModalProgressHUD(
+          inAsyncCall:
+              (dexViewModel.isBusy && dexViewModel.pokemonDetails.isEmpty),
+          progressIndicator: CircularProgressIndicator(),
+          child: Column(
+            children: [
+              Expanded(
+                child: GridView.count(
+                  controller: controller,
+                  crossAxisCount: widget.gridSize,
+                  mainAxisSpacing: VERTICAL_PADDING_POKEMON,
+                  children: getPokemonList(),
+                ),
+              ),
+              if (dexViewModel.isBusy)
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.all(kMargin),
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.transparent,
                     ),
                   ),
-                  if (dexViewModel.isBusy)
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                        padding: const EdgeInsets.all(kMargin),
-                        child: CircularProgressIndicator(
-                          backgroundColor: Colors.transparent,
-                        ),
-                      ),
-                    ),
-                ],
-              );
+                ),
+            ],
+          ),
+        );
       },
     );
   }

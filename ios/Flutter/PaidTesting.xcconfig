@@ -1,2 +1,4 @@
 #include "Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"
 #include "Generated.xcconfig"
+FLUTTER_TARGET=builds/paid/main_paid_testing.dart
+APP_NAME=Pokedex Testing

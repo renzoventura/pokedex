@@ -13,43 +13,41 @@ import 'package:pokedex/screens/party/screens/party_screen.dart';
 class PokeDexScreenMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        floatingActionButton: FloatingButtonNavigator(
-          title: PARTY_BUTTON_LABEL,
-          onTap: () => Navigator.pushNamedAndRemoveUntil(
-              context, PartyScreen.id, ModalRoute.withName(PokeDexScreen.id)),
-        ),
-        appBar: MobileAppBar(),
-        endDrawer: MobileDrawer(),
-        body: ContainerWithBackground(
-          child: Padding(
-            padding: EdgeInsets.only(
-              top: kMarginXL,
-            ),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: kMarginXL),
-                  child: Row(
-                    children: [
-                      Text(
-                        CHOOSE_TEAM,
-                        style: CHOOSE_YOUR_TEAM_TEXT_STYLE,
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
+    return Scaffold(
+      floatingActionButton: FloatingButtonNavigator(
+        title: PARTY_BUTTON_LABEL,
+        onTap: () => Navigator.pushNamedAndRemoveUntil(
+            context, PartyScreen.id, ModalRoute.withName(PokeDexScreen.id)),
+      ),
+      appBar: MobileAppBar(),
+      endDrawer: MobileDrawer(),
+      body: ContainerWithBackground(
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: kMarginXL,
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: kMarginXL),
+                child: Row(
+                  children: [
+                    Text(
+                      CHOOSE_TEAM,
+                      style: CHOOSE_YOUR_TEAM_TEXT_STYLE,
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: kMarginXL),
-                  child: CurrentParty(),
-                ),
-                Expanded(
-                  child: PokemonListContainer(),
-                ),
-              ],
-            ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: kMarginXL),
+                child: CurrentParty(),
+              ),
+              Expanded(
+                child: PokemonListContainer(),
+              ),
+            ],
           ),
         ),
       ),

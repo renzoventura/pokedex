@@ -12,76 +12,74 @@ import 'package:pokedex/screens/party/screens/party_screen.dart';
 class PartyScreenMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        floatingActionButton: FloatingButtonNavigator(
-          title: DEX_BUTTON_LABEL,
-          onTap: () => Navigator.pushNamedAndRemoveUntil(
-              context, PokeDexScreen.id, ModalRoute.withName(PartyScreen.id)),
-        ),
-        appBar: MobileAppBar(),
-        endDrawer: MobileDrawer(),
-        body: ContainerWithBackground(
-          child: Padding(
-            padding: EdgeInsets.only(
-              top: kMarginXL,
-            ),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: kMarginXL),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Scaffold(
+      floatingActionButton: FloatingButtonNavigator(
+        title: DEX_BUTTON_LABEL,
+        onTap: () => Navigator.pushNamedAndRemoveUntil(
+            context, PokeDexScreen.id, ModalRoute.withName(PartyScreen.id)),
+      ),
+      appBar: MobileAppBar(),
+      endDrawer: MobileDrawer(),
+      body: ContainerWithBackground(
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: kMarginXL,
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: kMarginXL),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      ASH_PARTY,
+                      style: CHOOSE_YOUR_TEAM_TEXT_STYLE,
+                      textAlign: TextAlign.left,
+                    ),
+                    NumberOfPokemon(),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
                     children: [
-                      Text(
-                        ASH_PARTY,
-                        style: CHOOSE_YOUR_TEAM_TEXT_STYLE,
-                        textAlign: TextAlign.left,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            EmptyPokemonContainer(),
+                            EmptyPokemonContainer(),
+                          ],
+                        ),
                       ),
-                      NumberOfPokemon(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            EmptyPokemonContainer(),
+                            EmptyPokemonContainer(),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            EmptyPokemonContainer(),
+                            EmptyPokemonContainer(),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              EmptyPokemonContainer(),
-                              EmptyPokemonContainer(),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              EmptyPokemonContainer(),
-                              EmptyPokemonContainer(),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              EmptyPokemonContainer(),
-                              EmptyPokemonContainer(),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
