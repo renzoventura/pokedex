@@ -65,7 +65,7 @@ class _PokemonListContainerState extends State<PokemonListContainer> {
                   children: getPokemonList(),
                 ),
               ),
-              if (dexViewModel.isBusy)
+              if (dexViewModel.isBusy && dexViewModel.pokemonDetails.isNotEmpty)
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(

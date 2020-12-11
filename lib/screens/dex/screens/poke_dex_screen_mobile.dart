@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/components/app_bar/mobile_app_bar.dart';
 import 'package:pokedex/components/container_with_background.dart';
-import 'package:pokedex/components/current_party/current_party.dart';
+import 'package:pokedex/components/current_party/mobile_current_party.dart';
 import 'package:pokedex/components/drawer/mobile_drawer.dart';
 import 'package:pokedex/components/floating_button_navigator.dart';
 import 'package:pokedex/constants/constants.dart';
@@ -40,9 +40,15 @@ class PokeDexScreenMobile extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: kMarginXL),
-                child: CurrentParty(),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: kMarginXL),
+                      child: MobileCurrentParty(),
+                    ),
+                  ),
+                ],
               ),
               Expanded(
                 child: PokemonListContainer(),

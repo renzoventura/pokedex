@@ -47,6 +47,7 @@ const double POKEMON_ID_HEIGHT = 18;
 const double POKEMON_ID_WIDTH = 44;
 const double POKEBALL_PLACEHOLDER_RADIUS = 28;
 const double HALF_POKEBALL_WIDTH = 64;
+const double CURRENT_PARTY_WIDTH = 42;
 
 //border radius
 const double kBorderRadiusS = 4.0;
@@ -149,3 +150,7 @@ const int FADE_IN_DURATION = 500;
 //pokemon container specific
 const double OVERLAY_DISTANCE_POKEMON = -42.0;
 const double OVERLAY_DISTANCE_POKEBALL = -40.0;
+
+//MAX SIZE
+const int MAXIMUM_PARTY_SIZE = 6;
+const String DEFAULT_PARTY_SIZE = "0";

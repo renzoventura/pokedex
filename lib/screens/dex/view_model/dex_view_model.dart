@@ -47,7 +47,7 @@ class DexViewModel extends BaseViewModel {
       if (response.isRight) {
         pokemonPageResponse = response.right.value;
         for (Results result in pokemonPageResponse.results) {
-          if (result?.name?.isNotNullOrNotEmpty ?? false)
+          if (result?.name?.isNotNullAndNotEmpty ?? false)
             await getPokemonByIdAndAdd(result?.name);
         }
       }

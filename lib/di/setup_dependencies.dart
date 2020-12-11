@@ -5,6 +5,7 @@ import 'package:pokedex/config/free/free_testing_config.dart';
 import 'package:pokedex/config/pro/paid_production_config.dart';
 import 'package:pokedex/config/pro/paid_testing_config.dart';
 import 'package:pokedex/constants/enums.dart';
+import 'package:pokedex/data/moor_database.dart';
 import 'package:pokedex/server/dio/pokemon_service.dart';
 import 'package:pokedex/server/repositories/pokemon_repository.dart';
 import 'package:pokedex/server/repositories/pokemon_repository_impl.dart';
@@ -43,4 +44,6 @@ setUpDependencies(BuildFlavor flavor, Environment environment) async {
   //setup service
   getIt.registerSingleton<PokemonService>(PokemonService());
   getIt.registerSingleton<PokemonRepository>(PokemonRepositoryImpl());
+  getIt.registerSingleton<AppDatabase>(AppDatabase());
+
 }
