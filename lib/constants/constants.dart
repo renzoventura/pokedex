@@ -145,7 +145,7 @@ const int POKEMON_LIST_LIMIT = 10;
 const int MINIMUM_GRID_SIZE = 2;
 
 //threshold
-const int SCROLL_THRESHOLD = 500;
+const int SCROLL_THRESHOLD = 250;
 
 //duration
 const int FADE_IN_DURATION = 500;
@@ -157,7 +157,6 @@ const double OVERLAY_DISTANCE_POKEBALL = -40.0;
 //MAX SIZE
 const int MAXIMUM_PARTY_SIZE = 6;
 const String DEFAULT_PARTY_SIZE = "0";
-
 
 //POSITIONING
 const double POSITIONED_ICON_BOTTOM = -20.0;
