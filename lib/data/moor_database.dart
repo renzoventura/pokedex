@@ -52,6 +52,10 @@ class AppDatabase extends _$AppDatabase {
       );
 
   //pokemon
+  Future<bool> isInParty(int id) async =>
+      (await (select(partyPokemons)..where((p) => p.pokemonId.equals(id))).get())
+          .isEmpty;
+
   Stream<List<PartyPokemon>> watchParty() => select(partyPokemons).watch();
   Future insertPokemonToParty(PartyPokemon pokemon) =>
       into(partyPokemons).insert(pokemon);

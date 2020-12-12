@@ -12,10 +12,9 @@ class PartyViewModel extends BaseViewModel {
   addPokemonToParty(PokemonDetails pokemonDetails) async {
     try {
       setBusy();
-
       int partySize = await appDatabase.getPartySize();
-
-      if (partySize < MAXIMUM_PARTY_SIZE) {
+      bool isInParty = await appDatabase.isInParty(pokemonDetails.id);
+      if (partySize < MAXIMUM_PARTY_SIZE && isInParty) {
         PartyPokemon partyData = PartyPokemon(
           pokemonId: pokemonDetails.id,
           name: pokemonDetails.name,
@@ -58,11 +57,11 @@ class PartyViewModel extends BaseViewModel {
   deletePokemon(PartyPokemon pokemon) async {
     try {
       setBusy();
-      pokemons = await appDatabase.removePokemonFromParty(pokemon);
-      currentPartySize = await appDatabase.getPartySize();
+      await appDatabase.removePokemonFromParty(pokemon);
     } catch (e) {
       log(e.toString());
     } finally {
+      currentPartySize = await appDatabase.getPartySize();
       setIdle();
     }
   }

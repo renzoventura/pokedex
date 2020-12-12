@@ -63,7 +63,6 @@ StreamBuilder<List<PartyPokemon>> _buildTaskList(BuildContext context) {
     stream: database.watchParty(),
     builder: (context, AsyncSnapshot<List<PartyPokemon>> snapshot) {
       List<PartyPokemon> pokemonParty = snapshot.data ?? List();
-
       return GridView.builder(
         itemCount: pokemonParty.length,
         itemBuilder: (_, index) {
@@ -80,11 +79,9 @@ StreamBuilder<List<PartyPokemon>> _buildTaskList(BuildContext context) {
                   pokemonName: pokemon.name,
                   pokemonId: pokemon.id,
                   pokemonImage: pokemon.image,
-                  onRemove: () {
-                    print("REMOVE");
-                    Provider.of<PartyViewModel>(context, listen: false)
-                        .deletePokemon(pokemon);
-                  },
+                  onRemove: () =>
+                      Provider.of<PartyViewModel>(context, listen: false)
+                          .deletePokemon(pokemon),
                 ),
               ),
             ],

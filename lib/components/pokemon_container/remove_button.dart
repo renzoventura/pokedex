@@ -10,13 +10,21 @@ class RemoveButton extends StatelessWidget {
     return Center(
       child: InkWell(
         onTap: () => onTap?.call(),
-        child: CircleAvatar(
-          backgroundColor: Colors.white,
-          radius: REMOVE_BUTTON_SIZE,
-          child: Icon(
-            Icons.close,
-            size: REMOVE_BUTTON_ICON,
-            color: Colors.black,
+        splashColor: Colors.transparent,
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: kMarginL,
+            left: kMarginL,
+            right: kMarginL,
+          ),
+          child: CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: REMOVE_BUTTON_SIZE,
+            child: Icon(
+              Icons.close,
+              size: REMOVE_BUTTON_ICON,
+              color: Colors.black,
+            ),
           ),
         ),
       ),
