@@ -4,6 +4,7 @@ import 'package:pokedex/components/pokemon_container/pokemon_detail_container.da
 import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/models/pokemon_details.dart';
 import 'package:pokedex/screens/dex/view_model/dex_view_model.dart';
+import 'package:pokedex/screens/party/view_model/party_view_model.dart';
 import 'package:provider/provider.dart';
 
 class PokemonListContainer extends StatefulWidget {
@@ -44,8 +45,15 @@ class _PokemonListContainerState extends State<PokemonListContainer> {
           List<Widget> pokemonWidgets = [];
           if (dexViewModel.pokemonDetails != null) {
             for (PokemonDetails pokemon in dexViewModel.pokemonDetails) {
-              pokemonWidgets
-                  .add(PokemonDetailContainer(pokemonDetails: pokemon));
+              pokemonWidgets.add(Center(
+                  child: PokemonDetailContainer(
+                onAdd: () => Provider.of<PartyViewModel>(context, listen: false)
+                    .addPokemonToParty(pokemon),
+                pokemonId: pokemon.id,
+                pokemonName: pokemon.name,
+                pokemonTypes: pokemon.types.map((e) => e.type.name).toList(),
+                pokemonImage: pokemon.sprites.frontDefault,
+              )));
             }
           }
           return pokemonWidgets;
@@ -55,23 +63,29 @@ class _PokemonListContainerState extends State<PokemonListContainer> {
           inAsyncCall:
               (dexViewModel.isBusy && dexViewModel.pokemonDetails.isEmpty),
           progressIndicator: CircularProgressIndicator(),
-          child: Column(
+          child: Stack(
             children: [
-              Expanded(
-                child: GridView.count(
-                  controller: controller,
-                  crossAxisCount: widget.gridSize,
-                  mainAxisSpacing: VERTICAL_PADDING_POKEMON,
-                  children: getPokemonList(),
-                ),
+              Column(
+                children: [
+                  Expanded(
+                    child: GridView.count(
+                      controller: controller,
+                      crossAxisCount: widget.gridSize,
+                      mainAxisSpacing: VERTICAL_PADDING_POKEMON,
+                      children: getPokemonList(),
+                    ),
+                  ),
+                ],
               ),
               if (dexViewModel.isBusy && dexViewModel.pokemonDetails.isNotEmpty)
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.all(kMargin),
-                    child: CircularProgressIndicator(
-                      backgroundColor: Colors.transparent,
+                Positioned.fill(
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.all(kMargin),
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.transparent,
+                      ),
                     ),
                   ),
                 ),

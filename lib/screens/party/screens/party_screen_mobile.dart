@@ -1,11 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/components/app_bar/mobile_app_bar.dart';
 import 'package:pokedex/components/container_with_background.dart';
 import 'package:pokedex/components/drawer/mobile_drawer.dart';
 import 'package:pokedex/components/floating_button_navigator.dart';
-import 'package:pokedex/components/pokemon_container/pokemon_id.dart';
-import 'package:pokedex/components/pokemon_container/pokemon_type_widget.dart';
+import 'package:pokedex/components/pokemon_container/pokemon_detail_container.dart';
 import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/data/moor_database.dart';
 import 'package:pokedex/di/setup_dependencies.dart';
@@ -74,49 +72,21 @@ StreamBuilder<List<PartyPokemon>> _buildTaskList(BuildContext context) {
           if (pokemon.typeOne.isNotNullAndNotEmpty) types.add(pokemon?.typeOne);
           if (pokemon.typeTwo.isNotNullAndNotEmpty) types.add(pokemon?.typeTwo);
 
-          getTypes() {
-            List<Widget> pokemonTypeWidgets = [];
-            for (String type in types) {
-              pokemonTypeWidgets.add(
-                PokemonTypeWidget(typeName: type),
-              );
-            }
-            return pokemonTypeWidgets;
-          }
-
           return Column(
             children: [
-              CachedNetworkImage(
-                imageUrl: pokemon.image,
-                errorWidget: (context, url, error) => Icon(Icons.error),
-              ),
-              PokemonId(
-                pokemonId: pokemon.id,
-              ),
-              Text(
-                pokemon.name.capitalize(),
-                style: POKEMON_NAME_TEXT_STYLE,
-              ),
-              Container(
-                padding: const EdgeInsets.only(
-                  bottom: kMargin,
-                  left: kMargin,
-                  right: kMargin,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: getTypes(),
+              Expanded(
+                child: PokemonDetailContainer(
+                  pokemonTypes: types,
+                  pokemonName: pokemon.name,
+                  pokemonId: pokemon.id,
+                  pokemonImage: pokemon.image,
+                  onRemove: () {
+                    print("REMOVE");
+                    Provider.of<PartyViewModel>(context, listen: false)
+                        .deletePokemon(pokemon);
+                  },
                 ),
               ),
-              InkWell(
-                onTap: () {
-                  Provider.of<PartyViewModel>(context, listen: false)
-                      .deletePokemon(pokemon);
-                },
-                child: Icon(
-                  Icons.close,
-                ),
-              )
             ],
           );
         },

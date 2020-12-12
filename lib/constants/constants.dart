@@ -23,7 +23,7 @@ const double kMarginXXXXL = 36.0;
 const double kMarginXXXXXL = 40.0;
 
 //large margins
-const double VERTICAL_PADDING_POKEMON = 78;
+const double VERTICAL_PADDING_POKEMON = 20;
 
 //sizedBox
 const double appbarLabelPadding = 52.0;
@@ -48,6 +48,9 @@ const double POKEMON_ID_WIDTH = 44;
 const double POKEBALL_PLACEHOLDER_RADIUS = 28;
 const double HALF_POKEBALL_WIDTH = 64;
 const double CURRENT_PARTY_WIDTH = 42;
+const double REMOVE_BUTTON_SIZE = 15;
+const double REMOVE_BUTTON_ICON = 10;
+
 
 //border radius
 const double kBorderRadiusS = 4.0;
@@ -154,3 +157,8 @@ const double OVERLAY_DISTANCE_POKEBALL = -40.0;
 //MAX SIZE
 const int MAXIMUM_PARTY_SIZE = 6;
 const String DEFAULT_PARTY_SIZE = "0";
+
+
+//POSITIONING
+const double POSITIONED_ICON_BOTTOM = -20.0;
+const double POSITIONED_IMAGE_TOP = -80.0;

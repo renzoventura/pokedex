@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/components/pokemon_container/pokemon_type_widget.dart';
 import 'package:pokedex/constants/constants.dart';
-import 'package:pokedex/models/pokemon_details.dart';
 
 class PokemonTypesContainer extends StatelessWidget {
-  final List<Types> types;
+  final List<String> types;
 
   const PokemonTypesContainer({Key key, @required this.types})
       : super(key: key);
@@ -13,10 +12,10 @@ class PokemonTypesContainer extends StatelessWidget {
     List<Widget> getTypes() {
       List<Widget> pokemonWidgets = [];
       if (types != null) {
-        for (Types types in types) {
+        for (String typeName in types) {
           pokemonWidgets.add(
             PokemonTypeWidget(
-              typeName: types.type.name,
+              typeName: typeName,
             ),
           );
         }
