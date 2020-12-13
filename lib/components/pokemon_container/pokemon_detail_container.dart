@@ -36,12 +36,10 @@ class PokemonDetailContainer extends StatefulWidget {
 }
 
 class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
-  TextEditingController controller = TextEditingController();
   FocusNode textNode = FocusNode();
   bool isNotSelected = true;
   @override
   void initState() {
-    controller.text = widget.pokemonName.capitalize();
     Future.microtask(() async {
       isNotSelected = await getIt<AppDatabase>().isNotInParty(widget.pokemonId);
     });
@@ -50,6 +48,9 @@ class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController controller = TextEditingController();
+    controller.text = widget.pokemonName.capitalize();
+
     Border getDecoration() {
       if (widget.onRemove != null || widget.isSelected) {
         return Border.all(
@@ -142,7 +143,10 @@ class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
                 right: 0,
                 left: 0,
                 child: RemoveButton(
-                  onTap: widget.onRemove,
+                  onTap: () {
+                    widget.onRemove?.call();
+                    setState(() {});
+                  },
                 ),
               ),
           ],

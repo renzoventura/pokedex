@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/components/orientation_layout.dart';
 import 'package:pokedex/screens/dex/screens/poke_dex_screen_mobile.dart';
 import 'package:pokedex/screens/dex/screens/poke_dex_screen_tablet.dart';
 import 'package:responsive_builder/responsive_builder.dart';
