@@ -47,6 +47,27 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    flavorDimensions "default"
+
+    productFlavors {
+        "freetesting" {
+            applicationId "com.renzo.pokedex.free.testing"
+            resValue "string", "app_name", "Free Pokedex Testing"
+        }
+        "freeproduction" {
+            applicationId "com.renzo.pokedex.free.production"
+            resValue "string", "app_name", "Free Pokedex"
+        }
+        "paidtesting" {
+            applicationId "com.renzo.pokedex.paid.testing"
+            resValue "string", "app_name", "Pokedex Testing"
+        }
+        "paidproduction" {
+            applicationId "com.renzo.pokedex.paid.production"
+            resValue "string", "app_name", "Pokedex"
+        }
+    }
 }
 
 flutter {
