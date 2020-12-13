@@ -2,3 +2,4 @@
 #include "Generated.xcconfig"
 FLUTTER_TARGET=builds/free/main_free_testing.dart
 APP_NAME=Free Pokedex Testing
+APP_DISPLAY_NAME=Free Pokedex Testing

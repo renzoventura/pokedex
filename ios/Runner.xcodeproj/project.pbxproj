@@ -387,7 +387,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.Paid;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
@@ -522,7 +522,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.Paid;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
@@ -552,7 +552,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.Paid;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
@@ -632,6 +632,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C9CE112E2582E4A6002CCD87 /* FreeProduction.xcconfig */;
 			buildSettings = {
+				APP_DISPLAY_NAME = "Free Pokedex";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.Free;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 266322Y3QH;
@@ -709,6 +710,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C9CE112C2582E49B002CCD87 /* FreeTesting.xcconfig */;
 			buildSettings = {
+				APP_DISPLAY_NAME = "Free Pokedex Testing";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.Free;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 266322Y3QH;
@@ -786,6 +788,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C9CE112F2582E4A6002CCD87 /* PaidProduction.xcconfig */;
 			buildSettings = {
+				APP_DISPLAY_NAME = Pokedex;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.Paid;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 266322Y3QH;
@@ -940,6 +943,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C9CE112C2582E49B002CCD87 /* FreeTesting.xcconfig */;
 			buildSettings = {
+				APP_DISPLAY_NAME = "Free Pokedex Testing";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.Free;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 266322Y3QH;
@@ -1017,6 +1021,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C9CE112E2582E4A6002CCD87 /* FreeProduction.xcconfig */;
 			buildSettings = {
+				APP_DISPLAY_NAME = "Free Pokedex";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.Free;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 266322Y3QH;
@@ -1171,6 +1176,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C9CE112F2582E4A6002CCD87 /* PaidProduction.xcconfig */;
 			buildSettings = {
+				APP_DISPLAY_NAME = Pokedex;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.Paid;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 266322Y3QH;
