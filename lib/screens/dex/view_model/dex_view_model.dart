@@ -14,6 +14,7 @@ class DexViewModel extends BaseViewModel {
   SortingValues initialValue = SortingValues.ID;
 
   init() {
+    pokemonDetails = [];
     pokemonPageResponse = null;
     if (pokemonDetails.isEmpty) getPokemons();
   }

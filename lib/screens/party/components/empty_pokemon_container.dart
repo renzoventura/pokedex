@@ -1,4 +1,3 @@
-import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/utils/image_utils.dart';

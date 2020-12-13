@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/config/config.dart';
 import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/utils/image_utils.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -36,7 +37,7 @@ StreamBuilder<List<PartyPokemon>> _buildTaskList() {
             ),
           );
         });
-        while (currentParty.length < MAXIMUM_PARTY_SIZE) {
+        while (currentParty.length < getIt<Config>().maxPartySize) {
           currentParty.add(
             Image.asset(
               ImageUtils.PARTY_PLACEHOLDER_SMALL,

@@ -1,9 +1,10 @@
 import 'dart:developer';
 
+import 'package:pokedex/config/config.dart';
 import 'package:pokedex/data/moor_database.dart';
+import 'package:pokedex/di/setup_dependencies.dart';
 import 'package:pokedex/models/pokemon_details.dart';
 import 'package:pokedex/screens/base_view_model.dart';
-import 'package:pokedex/constants/constants.dart';
 
 class PartyViewModel extends BaseViewModel {
   List<PartyPokemon> pokemons = [];
@@ -14,7 +15,7 @@ class PartyViewModel extends BaseViewModel {
       setBusy();
       int partySize = await appDatabase.getPartySize();
       bool isInParty = await appDatabase.isNotInParty(pokemonDetails.id);
-      if (partySize < MAXIMUM_PARTY_SIZE && isInParty) {
+      if (partySize < getIt<Config>().maxPartySize && isInParty) {
         PartyPokemon partyData = PartyPokemon(
           pokemonId: pokemonDetails.id,
           name: pokemonDetails.name,

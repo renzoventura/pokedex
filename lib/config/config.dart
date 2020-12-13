@@ -3,4 +3,5 @@ abstract class Config {
   int numberOfPokemons = 151;
   String appTitle = "PokeDex";
   int timeout = 10000;
+  int maxPartySize = 6;
 }

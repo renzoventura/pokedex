@@ -6,4 +6,7 @@ class FreeTestingConfig extends Config {
 
   @override
   String appTitle = "Free PokeDex Testing";
+
+  @override
+  int maxPartySize = 3;
 }
