@@ -7,6 +7,7 @@ import 'package:pokedex/components/pokemon_container/pokemon_detail_container.da
 import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/data/moor_database.dart';
 import 'package:pokedex/di/setup_dependencies.dart';
+import 'package:pokedex/screens/party/components/empty_pokemon_container.dart';
 import 'package:pokedex/screens/party/components/number_of_pokemon.dart';
 import 'package:pokedex/screens/party/view_model/party_view_model.dart';
 import 'package:pokedex/utils/extensions/string_extension.dart';
@@ -61,8 +62,14 @@ StreamBuilder<List<PartyPokemon>> _buildTaskList(BuildContext context) {
     builder: (context, AsyncSnapshot<List<PartyPokemon>> snapshot) {
       List<PartyPokemon> pokemonParty = snapshot.data ?? List();
       return GridView.builder(
-        itemCount: pokemonParty.length,
+        itemCount: MAXIMUM_PARTY_SIZE,
         itemBuilder: (_, index) {
+          if (pokemonParty.length <= index)
+            return Column(
+              children: [
+                Expanded(child: EmptyPokemonContainer()),
+              ],
+            );
           PartyPokemon pokemon = pokemonParty[index];
           List<String> types = [];
           if (pokemon.typeOne.isNotNullAndNotEmpty) types.add(pokemon?.typeOne);

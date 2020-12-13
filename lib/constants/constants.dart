@@ -50,7 +50,7 @@ const double HALF_POKEBALL_WIDTH = 64;
 const double CURRENT_PARTY_WIDTH = 42;
 const double REMOVE_BUTTON_SIZE = 15;
 const double REMOVE_BUTTON_ICON = 10;
-
+const double EMPTY_POKEBALL_PLACEHOLDER_RADIUS = 60;
 
 //border radius
 const double kBorderRadiusS = 4.0;
@@ -161,3 +161,4 @@ const String DEFAULT_PARTY_SIZE = "0";
 //POSITIONING
 const double POSITIONED_ICON_BOTTOM = -20.0;
 const double POSITIONED_IMAGE_TOP = -80.0;
+const double POSITIONED_POKEBALL_TOP = -30.0;
