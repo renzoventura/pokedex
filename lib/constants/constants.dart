@@ -7,6 +7,7 @@ const CHOOSE_TEAM = "Choose \n your team";
 const ASH_PARTY = "Ash's \n party";
 const PARTY_BUTTON_LABEL = "Party";
 const DEX_BUTTON_LABEL = "Dex";
+const SORT_BY = "Sort by";
 
 //margins
 const double kMarginXXXS = 2.0;
@@ -77,6 +78,16 @@ const TextStyle CHOOSE_YOUR_TEAM_TEXT_STYLE = TextStyle(
   fontFamily: 'Moret',
   fontWeight: FontWeight.w700,
   fontSize: 36,
+);
+const TextStyle SORT_BY_TEXT_STYLE = TextStyle(
+  fontFamily: 'Moret',
+  fontWeight: FontWeight.w700,
+  fontSize: 24,
+);
+const TextStyle SORT_BY_VALUES_TEXT_STYLE = TextStyle(
+  fontFamily: 'Moret',
+  fontWeight: FontWeight.w700,
+  fontSize: 14,
 );
 const TextStyle POKEMON_NAME_TEXT_STYLE = TextStyle(
   fontFamily: 'Moret',

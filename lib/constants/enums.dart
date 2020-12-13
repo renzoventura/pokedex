@@ -23,3 +23,5 @@ enum PokemonTypes {
   UNKNOWN,
   SHADOW,
 }
+
+enum SortingValues { ID, NAME, HEIGHT, WEIGHT, ORDER }

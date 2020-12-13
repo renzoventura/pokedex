@@ -7,6 +7,7 @@ import 'package:pokedex/components/drawer/mobile_drawer.dart';
 import 'package:pokedex/components/floating_button_navigator.dart';
 import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/screens/dex/components/pokemon_list_container.dart';
+import 'package:pokedex/screens/dex/components/sorting_dropdown.dart';
 import 'package:pokedex/screens/dex/screens/poke_dex_screen.dart';
 import 'package:pokedex/screens/party/screens/party_screen.dart';
 
@@ -31,12 +32,14 @@ class PokeDexScreenMobile extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: kMarginXL),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       CHOOSE_TEAM,
                       style: CHOOSE_YOUR_TEAM_TEXT_STYLE,
                       textAlign: TextAlign.left,
                     ),
+                    SortingDropdown(),
                   ],
                 ),
               ),

@@ -1,7 +1,7 @@
 import 'dart:developer';
-
 import 'package:either_option/either_option.dart';
 import 'package:pokedex/constants/constants.dart';
+import 'package:pokedex/constants/enums.dart';
 import 'package:pokedex/models/errors/problem.dart';
 import 'package:pokedex/models/pokemon_details.dart';
 import 'package:pokedex/models/pokemon_page_response.dart';
@@ -9,8 +9,9 @@ import 'package:pokedex/screens/base_view_model.dart';
 import 'package:pokedex/utils/extensions/string_extension.dart';
 
 class DexViewModel extends BaseViewModel {
-  Set<PokemonDetails> pokemonDetails = {};
+  List<PokemonDetails> pokemonDetails = [];
   PokemonPageResponse pokemonPageResponse;
+  SortingValues initialValue = SortingValues.ID;
 
   init() {
     pokemonPageResponse = null;
@@ -54,7 +55,46 @@ class DexViewModel extends BaseViewModel {
     } catch (e) {
       log(e.toString());
     } finally {
+      applySorting();
       setIdle();
     }
   }
+
+  applySorting() {
+    print("APPLYING SORT");
+    switch (initialValue) {
+      case SortingValues.ID:
+        print("APPLYING SORT: ${initialValue.toString()}");
+        pokemonDetails.sort((a, b) => a.id.compareTo(b.id));
+        break;
+      case SortingValues.NAME:
+        print("APPLYING SORT: ${initialValue.toString()}");
+        pokemonDetails.sort((a, b) => a.name.compareTo(b.name));
+        break;
+      case SortingValues.HEIGHT:
+        print("APPLYING SORT: ${initialValue.toString()}");
+        pokemonDetails.sort((a, b) => a.height.compareTo(b.height));
+        break;
+      case SortingValues.WEIGHT:
+        print("APPLYING SORT: ${initialValue.toString()}");
+        pokemonDetails.sort((a, b) => a.weight.compareTo(b.weight));
+        break;
+      case SortingValues.ORDER:
+        pokemonDetails.sort((a, b) => a.order.compareTo(b.order));
+        break;
+    }
+  }
+
+  sortPokemon() {
+    setBusy();
+    try {
+      applySorting();
+    } catch (e) {
+      log(e.toString());
+    } finally {
+      setIdle();
+    }
+  }
+
+
 }
