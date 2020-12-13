@@ -66,6 +66,7 @@ class AppDatabase extends _$AppDatabase {
       update(partyPokemons).replace(pokemon);
   Future<int> getPartySize() async =>
       (await select(partyPokemons).get()).length;
+  Future updatePokemonName(PartyPokemon pokemon) => update(partyPokemons).replace(pokemon);
 
   //types
   // Future insertTag(PartyType pokemon) => into(partyTypes).insert(pokemon);

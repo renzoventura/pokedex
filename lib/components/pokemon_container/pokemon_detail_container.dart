@@ -18,7 +18,7 @@ class PokemonDetailContainer extends StatefulWidget {
   final String pokemonImage;
   final Function onRemove;
   final bool isSelected;
-
+  final Function(String) updateName;
   const PokemonDetailContainer({
     Key key,
     @required this.pokemonName,
@@ -26,7 +26,9 @@ class PokemonDetailContainer extends StatefulWidget {
     @required this.pokemonTypes,
     @required this.pokemonImage,
     this.onAdd,
-    this.onRemove, this.isSelected = false,
+    this.onRemove,
+    this.isSelected = false,
+    this.updateName,
   }) : super(key: key);
 
   @override
@@ -34,9 +36,12 @@ class PokemonDetailContainer extends StatefulWidget {
 }
 
 class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
+  TextEditingController controller = TextEditingController();
+  FocusNode textNode = FocusNode();
   bool isNotSelected = true;
   @override
   void initState() {
+    controller.text = widget.pokemonName.capitalize();
     Future.microtask(() async {
       isNotSelected = await getIt<AppDatabase>().isNotInParty(widget.pokemonId);
     });
@@ -54,6 +59,29 @@ class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
       return null;
     }
 
+    Widget pokemonName() {
+      if (widget.updateName != null) {
+        return EditableText(
+          style: POKEMON_NAME_TEXT_STYLE,
+          controller: controller,
+          autocorrectionTextRectColor: Colors.black,
+          backgroundCursorColor: Colors.black,
+          focusNode: textNode,
+          cursorColor: Colors.black,
+          selectionColor: Colors.black,
+          textAlign: TextAlign.center,
+          onSubmitted: (value) {
+            widget.updateName(value);
+          },
+        );
+      } else {
+        return Text(
+          widget.pokemonName.capitalize(),
+          style: POKEMON_NAME_TEXT_STYLE,
+        );
+      }
+    }
+
     return Center(
       child: Container(
         padding: const EdgeInsets.symmetric(
@@ -62,9 +90,12 @@ class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
           overflow: Overflow.visible,
           children: [
             InkWell(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               onTap: () async {
                 await widget.onAdd?.call();
-                isNotSelected = await getIt<AppDatabase>().isNotInParty(widget.pokemonId);
+                isNotSelected =
+                    await getIt<AppDatabase>().isNotInParty(widget.pokemonId);
                 setState(() {});
               },
               child: Stack(
@@ -86,10 +117,7 @@ class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
                         PokemonId(
                           pokemonId: widget.pokemonId,
                         ),
-                        Text(
-                          widget.pokemonName.capitalize(),
-                          style: POKEMON_NAME_TEXT_STYLE,
-                        ),
+                        pokemonName(),
                         PokemonTypesContainer(
                           types: widget.pokemonTypes,
                         ),

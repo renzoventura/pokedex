@@ -80,6 +80,10 @@ StreamBuilder<List<PartyPokemon>> _buildTaskList(BuildContext context) {
             children: [
               Expanded(
                 child: PokemonDetailContainer(
+                  updateName: (String name) {
+                    Provider.of<PartyViewModel>(context, listen: false)
+                        .updatePokemonName(pokemon, name);
+                  },
                   pokemonTypes: types,
                   pokemonName: pokemon.name,
                   pokemonId: pokemon.id,

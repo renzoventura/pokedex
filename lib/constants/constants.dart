@@ -93,6 +93,7 @@ const TextStyle POKEMON_NAME_TEXT_STYLE = TextStyle(
   fontFamily: 'Moret',
   fontWeight: FontWeight.w400,
   fontSize: 24,
+  color: Color(0xff000000),
 );
 const TextStyle POKEMON_ID_TEXT_STYLE = TextStyle(
   fontFamily: 'WorkSans',
