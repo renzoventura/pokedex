@@ -8,6 +8,7 @@ const ASH_PARTY = "Ash's \n party";
 const PARTY_BUTTON_LABEL = "Party";
 const DEX_BUTTON_LABEL = "Dex";
 const SORT_BY = "Sort by";
+const SCROLL_FOR_MORE = "Scroll for \n more";
 
 //margins
 const double kMarginXXXS = 2.0;
@@ -79,15 +80,20 @@ const TextStyle CHOOSE_YOUR_TEAM_TEXT_STYLE = TextStyle(
   fontWeight: FontWeight.w700,
   fontSize: 36,
 );
+const TextStyle CHOOSE_YOUR_TEAM_TEXT_STYLE_TABLET = TextStyle(
+  fontFamily: 'Moret',
+  fontWeight: FontWeight.w700,
+  fontSize: 14,
+);
 const TextStyle SORT_BY_TEXT_STYLE = TextStyle(
   fontFamily: 'Moret',
   fontWeight: FontWeight.w700,
-  fontSize: 24,
+  fontSize: 14,
 );
 const TextStyle SORT_BY_VALUES_TEXT_STYLE = TextStyle(
   fontFamily: 'Moret',
   fontWeight: FontWeight.w700,
-  fontSize: 14,
+  fontSize: 12,
 );
 const TextStyle POKEMON_NAME_TEXT_STYLE = TextStyle(
   fontFamily: 'Moret',
@@ -173,3 +179,6 @@ const String DEFAULT_PARTY_SIZE = "0";
 const double POSITIONED_ICON_BOTTOM = -20.0;
 const double POSITIONED_IMAGE_TOP = -80.0;
 const double POSITIONED_POKEBALL_TOP = -30.0;
+
+//gridsize
+const int TABLET_GRID_SIZE = 3;

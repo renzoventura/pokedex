@@ -14,7 +14,6 @@ class DexViewModel extends BaseViewModel {
   SortingValues initialValue = SortingValues.ID;
 
   init() {
-    pokemonDetails = [];
     pokemonPageResponse = null;
     if (pokemonDetails.isEmpty) getPokemons();
   }
@@ -62,22 +61,17 @@ class DexViewModel extends BaseViewModel {
   }
 
   applySorting() {
-    print("APPLYING SORT");
     switch (initialValue) {
       case SortingValues.ID:
-        print("APPLYING SORT: ${initialValue.toString()}");
         pokemonDetails.sort((a, b) => a.id.compareTo(b.id));
         break;
       case SortingValues.NAME:
-        print("APPLYING SORT: ${initialValue.toString()}");
         pokemonDetails.sort((a, b) => a.name.compareTo(b.name));
         break;
       case SortingValues.HEIGHT:
-        print("APPLYING SORT: ${initialValue.toString()}");
         pokemonDetails.sort((a, b) => a.height.compareTo(b.height));
         break;
       case SortingValues.WEIGHT:
-        print("APPLYING SORT: ${initialValue.toString()}");
         pokemonDetails.sort((a, b) => a.weight.compareTo(b.weight));
         break;
       case SortingValues.ORDER:
