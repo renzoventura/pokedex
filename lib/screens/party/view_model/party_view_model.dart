@@ -96,7 +96,7 @@ class PartyViewModel extends BaseViewModel {
   updatePokemonName(PartyPokemon partyPokemon, String name) async {
     PartyPokemon partyData = PartyPokemon(
       id: partyPokemon.id,
-      pokemonId: partyPokemon.id,
+      pokemonId: partyPokemon.pokemonId,
       name: name,
       image: partyPokemon.image,
       typeOne: partyPokemon.typeOne,

@@ -18,6 +18,7 @@ class PartyScreenMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingButtonNavigator(
         title: DEX_BUTTON_LABEL,
         onTap: () => Navigator.pop(context),
@@ -86,7 +87,7 @@ StreamBuilder<List<PartyPokemon>> _buildTaskList(BuildContext context) {
                   },
                   pokemonTypes: types,
                   pokemonName: pokemon.name,
-                  pokemonId: pokemon.id,
+                  pokemonId: pokemon.pokemonId,
                   pokemonImage: pokemon.image,
                   onRemove: () =>
                       Provider.of<PartyViewModel>(context, listen: false)

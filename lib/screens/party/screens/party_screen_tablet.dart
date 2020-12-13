@@ -6,6 +6,7 @@ class PartyScreenTablet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: TabletAppBar(),
       body: ContainerWithBackground(
         child: Center(
