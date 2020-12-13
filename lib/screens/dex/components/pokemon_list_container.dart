@@ -47,8 +47,10 @@ class _PokemonListContainerState extends State<PokemonListContainer> {
             for (PokemonDetails pokemon in dexViewModel.pokemonDetails) {
               pokemonWidgets.add(Center(
                   child: PokemonDetailContainer(
-                onAdd: () => Provider.of<PartyViewModel>(context, listen: false)
-                    .addPokemonToParty(pokemon),
+                onAdd: () async {
+                 await Provider.of<PartyViewModel>(context, listen: false)
+                      .addPokemonToParty(pokemon);
+                },
                 pokemonId: pokemon.id,
                 pokemonName: pokemon.name,
                 pokemonTypes: pokemon.types.map((e) => e.type.name).toList(),

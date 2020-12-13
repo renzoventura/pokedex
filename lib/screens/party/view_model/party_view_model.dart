@@ -13,7 +13,7 @@ class PartyViewModel extends BaseViewModel {
     try {
       setBusy();
       int partySize = await appDatabase.getPartySize();
-      bool isInParty = await appDatabase.isInParty(pokemonDetails.id);
+      bool isInParty = await appDatabase.isNotInParty(pokemonDetails.id);
       if (partySize < MAXIMUM_PARTY_SIZE && isInParty) {
         PartyPokemon partyData = PartyPokemon(
           pokemonId: pokemonDetails.id,
@@ -35,10 +35,11 @@ class PartyViewModel extends BaseViewModel {
         //   appDatabase.insertTag(partyType);
         // }
       }
-      currentPartySize = await appDatabase.getPartySize();
     } catch (e) {
       log(e.toString());
     } finally {
+      currentPartySize = await appDatabase.getPartySize();
+      await updatePokemon();
       setIdle();
     }
   }
@@ -62,6 +63,7 @@ class PartyViewModel extends BaseViewModel {
       log(e.toString());
     } finally {
       currentPartySize = await appDatabase.getPartySize();
+      await updatePokemon();
       setIdle();
     }
   }
@@ -76,4 +78,17 @@ class PartyViewModel extends BaseViewModel {
       setIdle();
     }
   }
+
+  updatePokemon() async {
+    pokemons = await appDatabase.getParty();
+  }
+
+  bool pokemonIsInParty(int id) {
+    pokemons.forEach((element) {
+      return element.id == id;
+    });
+    return false;
+  }
+
+  Future<bool> isNotInParty(int id) async => await appDatabase.isNotInParty(id);
 }

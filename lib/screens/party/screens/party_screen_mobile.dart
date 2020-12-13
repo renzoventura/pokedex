@@ -7,9 +7,7 @@ import 'package:pokedex/components/pokemon_container/pokemon_detail_container.da
 import 'package:pokedex/constants/constants.dart';
 import 'package:pokedex/data/moor_database.dart';
 import 'package:pokedex/di/setup_dependencies.dart';
-import 'package:pokedex/screens/dex/screens/poke_dex_screen.dart';
 import 'package:pokedex/screens/party/components/number_of_pokemon.dart';
-import 'package:pokedex/screens/party/screens/party_screen.dart';
 import 'package:pokedex/screens/party/view_model/party_view_model.dart';
 import 'package:pokedex/utils/extensions/string_extension.dart';
 import 'package:provider/provider.dart';
@@ -20,8 +18,7 @@ class PartyScreenMobile extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingButtonNavigator(
         title: DEX_BUTTON_LABEL,
-        onTap: () => Navigator.pushNamedAndRemoveUntil(
-            context, PokeDexScreen.id, ModalRoute.withName(PartyScreen.id)),
+        onTap: () => Navigator.pop(context),
       ),
       appBar: MobileAppBar(),
       endDrawer: MobileDrawer(),

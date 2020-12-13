@@ -5,16 +5,19 @@ import 'package:pokedex/components/pokemon_container/pokemon_id.dart';
 import 'package:pokedex/components/pokemon_container/pokemon_types_container.dart';
 import 'package:pokedex/components/pokemon_container/remove_button.dart';
 import 'package:pokedex/constants/constants.dart';
+import 'package:pokedex/data/moor_database.dart';
+import 'package:pokedex/di/setup_dependencies.dart';
 import 'package:pokedex/utils/extensions/string_extension.dart';
 import 'package:pokedex/utils/svg_utils.dart';
 
-class PokemonDetailContainer extends StatelessWidget {
+class PokemonDetailContainer extends StatefulWidget {
   final String pokemonName;
   final int pokemonId;
   final List<String> pokemonTypes;
   final Function onAdd;
   final String pokemonImage;
   final Function onRemove;
+  final bool isSelected;
 
   const PokemonDetailContainer({
     Key key,
@@ -23,10 +26,34 @@ class PokemonDetailContainer extends StatelessWidget {
     @required this.pokemonTypes,
     @required this.pokemonImage,
     this.onAdd,
-    this.onRemove,
+    this.onRemove, this.isSelected = false,
   }) : super(key: key);
+
+  @override
+  _PokemonDetailContainerState createState() => _PokemonDetailContainerState();
+}
+
+class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
+  bool isNotSelected = true;
+  @override
+  void initState() {
+    Future.microtask(() async {
+      isNotSelected = await getIt<AppDatabase>().isNotInParty(widget.pokemonId);
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    Border getDecoration() {
+      if (widget.onRemove != null || widget.isSelected) {
+        return Border.all(
+          color: Colors.green,
+        );
+      }
+      return null;
+    }
+
     return Center(
       child: Container(
         padding: const EdgeInsets.symmetric(
@@ -35,12 +62,18 @@ class PokemonDetailContainer extends StatelessWidget {
           overflow: Overflow.visible,
           children: [
             InkWell(
-              onTap: () => onAdd?.call(),
+              onTap: () async {
+                await widget.onAdd?.call();
+                isNotSelected = await getIt<AppDatabase>().isNotInParty(widget.pokemonId);
+                setState(() {});
+              },
               child: Stack(
                 overflow: Overflow.visible,
                 children: [
                   Container(
-                    decoration: POKEMON_CONTAINER,
+                    decoration: POKEMON_CONTAINER.copyWith(
+                      border: getDecoration(),
+                    ),
                     height: POKEMON_CONTAINER_HEIGHT,
                     width: POKEMON_CONTAINER_WIDTH,
                     child: Column(
@@ -51,14 +84,14 @@ class PokemonDetailContainer extends StatelessWidget {
                           width: HALF_POKEBALL_WIDTH,
                         ),
                         PokemonId(
-                          pokemonId: pokemonId,
+                          pokemonId: widget.pokemonId,
                         ),
                         Text(
-                          pokemonName.capitalize(),
+                          widget.pokemonName.capitalize(),
                           style: POKEMON_NAME_TEXT_STYLE,
                         ),
                         PokemonTypesContainer(
-                          types: pokemonTypes,
+                          types: widget.pokemonTypes,
                         ),
                       ],
                     ),
@@ -68,20 +101,20 @@ class PokemonDetailContainer extends StatelessWidget {
                     right: 0,
                     left: 0,
                     child: CachedNetworkImage(
-                      imageUrl: pokemonImage,
+                      imageUrl: widget.pokemonImage,
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),
                 ],
               ),
             ),
-            if (onRemove != null)
+            if (widget.onRemove != null)
               Positioned(
                 bottom: POSITIONED_ICON_BOTTOM,
                 right: 0,
                 left: 0,
                 child: RemoveButton(
-                  onTap: onRemove,
+                  onTap: widget.onRemove,
                 ),
               ),
           ],

@@ -12,9 +12,9 @@ class PartyScreen extends StatelessWidget {
       child: ScreenTypeLayout(
         mobile: OrientationLayout(
           portrait: PartyScreenMobile(),
-          landscape: PartyScreenMobile(),
+          // landscape: PartyScreenMobile(),
         ),
-        tablet: PartyScreenTablet(),
+        // tablet: PartyScreenTablet(),
       ),
     );
   }
