@@ -92,4 +92,16 @@ class PartyViewModel extends BaseViewModel {
   }
 
   Future<bool> isNotInParty(int id) async => await appDatabase.isNotInParty(id);
+
+  updatePokemonName(PartyPokemon partyPokemon, String name) async {
+    PartyPokemon partyData = PartyPokemon(
+      id: partyPokemon.id,
+      pokemonId: partyPokemon.id,
+      name: name,
+      image: partyPokemon.image,
+      typeOne: partyPokemon.typeOne,
+      typeTwo: partyPokemon.typeTwo,
+    );
+    await getIt<AppDatabase>().updatePokemonName(partyData);
+  }
 }
