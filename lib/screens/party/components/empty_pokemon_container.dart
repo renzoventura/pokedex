@@ -5,10 +5,12 @@ import 'package:pokedex/utils/image_utils.dart';
 class EmptyPokemonContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Padding(
+      padding: const EdgeInsets.only(top: kMarginL),
       child: Container(
+        height: POKEMON_WIDGET_HEIGHT,
+        width: POKEMON_WIDGET_WIDTH,
         padding: const EdgeInsets.symmetric(
-          horizontal: kMarginS,
             vertical: kMarginXXXL,
         ),
         child: Stack(
@@ -18,8 +20,8 @@ class EmptyPokemonContainer extends StatelessWidget {
               children: [
                 Container(
                   decoration: POKEMON_CONTAINER,
-                  height: POKEMON_CONTAINER_HEIGHT,
-                  width: POKEMON_CONTAINER_WIDTH,
+                  height: POKEMON_WIDGET_HEIGHT,
+                  width: POKEMON_WIDGET_WIDTH,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

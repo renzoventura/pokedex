@@ -44,6 +44,8 @@ const double TWENTY_PERCENT_OPACITY = 0.2;
 //sizes
 const double APP_BAR_PROFILE_RADIUS = 20;
 const double DRAWER_PROFILE_RADIUS = 50;
+const double POKEMON_WIDGET_HEIGHT = 200;
+const double POKEMON_WIDGET_WIDTH = 150;
 const double POKEMON_CONTAINER_HEIGHT = 154;
 const double POKEMON_CONTAINER_WIDTH = 152;
 const double POKEMON_ID_HEIGHT = 18;

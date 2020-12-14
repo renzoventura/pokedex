@@ -118,10 +118,12 @@ class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
       );
     });
 
-    return Center(
+    return Padding(
+      padding: const EdgeInsets.only(top: kMarginL),
       child: Container(
-        padding: const EdgeInsets.symmetric(
-            horizontal: kMarginS, vertical: kMarginXXXL),
+        height: POKEMON_WIDGET_HEIGHT,
+        width: POKEMON_WIDGET_WIDTH,
+        padding: const EdgeInsets.symmetric(vertical: kMarginXXXL),
         child: Stack(
           overflow: Overflow.visible,
           children: [
@@ -138,8 +140,8 @@ class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
                   containerDetailsWidget,
                   Positioned(
                     top: POSITIONED_IMAGE_TOP,
-                    right: 0,
                     left: 0,
+                    right: 0,
                     child: CachedNetworkImage(
                       imageUrl: widget.pokemonImage,
                       errorWidget: (context, url, error) => Icon(Icons.error),
@@ -151,8 +153,8 @@ class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
             if (widget.onRemove != null)
               Positioned(
                 bottom: POSITIONED_ICON_BOTTOM,
-                right: 0,
                 left: 0,
+                right: 0,
                 child: RemoveButton(
                   onTap: () {
                     widget.onRemove?.call();
