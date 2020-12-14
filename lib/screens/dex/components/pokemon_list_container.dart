@@ -30,9 +30,10 @@ class _PokemonListContainerState extends State<PokemonListContainer> {
 
   @override
   void initState() {
-    Future.microtask(
-      () => Provider.of<DexViewModel>(context, listen: false).init(),
-    );
+    Future.microtask(() {
+      Provider.of<DexViewModel>(context, listen: false).init();
+      Provider.of<PartyViewModel>(context, listen: false).updatePokemon();
+    });
     controller = new ScrollController()..addListener(_scrollListener);
     super.initState();
   }
@@ -48,7 +49,7 @@ class _PokemonListContainerState extends State<PokemonListContainer> {
               pokemonWidgets.add(Center(
                   child: PokemonDetailContainer(
                 onAdd: () async {
-                 await Provider.of<PartyViewModel>(context, listen: false)
+                  await Provider.of<PartyViewModel>(context, listen: false)
                       .addPokemonToParty(pokemon);
                 },
                 pokemonId: pokemon.id,

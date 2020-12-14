@@ -5,10 +5,10 @@ import 'package:pokedex/components/pokemon_container/pokemon_id.dart';
 import 'package:pokedex/components/pokemon_container/pokemon_types_container.dart';
 import 'package:pokedex/components/pokemon_container/remove_button.dart';
 import 'package:pokedex/constants/constants.dart';
-import 'package:pokedex/data/moor_database.dart';
-import 'package:pokedex/di/setup_dependencies.dart';
+import 'package:pokedex/screens/party/view_model/party_view_model.dart';
 import 'package:pokedex/utils/extensions/string_extension.dart';
 import 'package:pokedex/utils/svg_utils.dart';
+import 'package:provider/provider.dart';
 
 class PokemonDetailContainer extends StatefulWidget {
   final String pokemonName;
@@ -37,12 +37,8 @@ class PokemonDetailContainer extends StatefulWidget {
 
 class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
   FocusNode textNode = FocusNode();
-  bool isNotSelected = true;
   @override
   void initState() {
-    Future.microtask(() async {
-      isNotSelected = await getIt<AppDatabase>().isNotInParty(widget.pokemonId);
-    });
     super.initState();
   }
 
@@ -51,25 +47,17 @@ class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
     TextEditingController controller = TextEditingController();
     controller.text = widget.pokemonName.capitalize();
 
-    Border getDecoration() {
-      if (widget.onRemove != null || widget.isSelected) {
-        return Border.all(
-          color: Colors.green,
-        );
-      }
-      return null;
-    }
-
     Widget pokemonName() {
       if (widget.updateName != null) {
         return EditableText(
           style: POKEMON_NAME_TEXT_STYLE,
           controller: controller,
           autocorrectionTextRectColor: Colors.black,
+          autocorrect: false,
           backgroundCursorColor: Colors.black,
           focusNode: textNode,
           cursorColor: Colors.black,
-          selectionColor: Colors.black,
+          selectionColor: Colors.white,
           textAlign: TextAlign.center,
           onSubmitted: (value) {
             widget.updateName(value);
@@ -83,6 +71,38 @@ class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
       }
     }
 
+    Consumer containerDetailsWidget =
+        Consumer<PartyViewModel>(builder: (context, viewModel, child) {
+      return Container(
+        decoration: POKEMON_CONTAINER.copyWith(
+          border: (widget.onRemove != null ||
+                  viewModel.pokemonIsInParty(widget.pokemonId))
+              ? Border.all(
+                  color: Colors.green,
+                )
+              : null,
+        ),
+        height: POKEMON_CONTAINER_HEIGHT,
+        width: POKEMON_CONTAINER_WIDTH,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SvgPicture.asset(
+              SvgUtils.HALF_POKEBALL,
+              width: HALF_POKEBALL_WIDTH,
+            ),
+            PokemonId(
+              pokemonId: widget.pokemonId,
+            ),
+            pokemonName(),
+            PokemonTypesContainer(
+              types: widget.pokemonTypes,
+            ),
+          ],
+        ),
+      );
+    });
+
     return Center(
       child: Container(
         padding: const EdgeInsets.symmetric(
@@ -95,36 +115,12 @@ class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
               highlightColor: Colors.transparent,
               onTap: () async {
                 await widget.onAdd?.call();
-                isNotSelected =
-                    await getIt<AppDatabase>().isNotInParty(widget.pokemonId);
                 setState(() {});
               },
               child: Stack(
                 overflow: Overflow.visible,
                 children: [
-                  Container(
-                    decoration: POKEMON_CONTAINER.copyWith(
-                      border: getDecoration(),
-                    ),
-                    height: POKEMON_CONTAINER_HEIGHT,
-                    width: POKEMON_CONTAINER_WIDTH,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SvgPicture.asset(
-                          SvgUtils.HALF_POKEBALL,
-                          width: HALF_POKEBALL_WIDTH,
-                        ),
-                        PokemonId(
-                          pokemonId: widget.pokemonId,
-                        ),
-                        pokemonName(),
-                        PokemonTypesContainer(
-                          types: widget.pokemonTypes,
-                        ),
-                      ],
-                    ),
-                  ),
+                  containerDetailsWidget,
                   Positioned(
                     top: POSITIONED_IMAGE_TOP,
                     right: 0,

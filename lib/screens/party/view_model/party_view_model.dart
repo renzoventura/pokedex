@@ -85,9 +85,9 @@ class PartyViewModel extends BaseViewModel {
   }
 
   bool pokemonIsInParty(int id) {
-    pokemons.forEach((element) {
-      return element.id == id;
-    });
+    for(PartyPokemon pokemon in pokemons) {
+      if (pokemon.pokemonId == id) return true;
+    }
     return false;
   }
 
