@@ -7,11 +7,12 @@ import 'package:pokedex/screens/party/components/empty_pokemon_container.dart';
 import 'package:pokedex/screens/party/view_model/party_view_model.dart';
 import 'package:pokedex/utils/extensions/string_extension.dart';
 import 'package:provider/provider.dart';
+import 'package:pokedex/constants/constants.dart';
 
 class CurrentParty extends StatelessWidget {
   final int gridNumber;
 
-  const CurrentParty({Key key, this.gridNumber = 2}) : super(key: key);
+  const CurrentParty({Key key, this.gridNumber = MINIMUM_GRID_SIZE}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return _buildTaskList(context, gridNumber);

@@ -16,6 +16,7 @@ class PokeDexScreenMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomPadding: true,
       floatingActionButton: FloatingButtonNavigator(
         title: PARTY_BUTTON_LABEL,
         onTap: () => Navigator.pushNamedAndRemoveUntil(
