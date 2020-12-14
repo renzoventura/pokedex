@@ -39,6 +39,7 @@ const double logoAppBarEndingMobilePadding = 20;
 //opacity
 const double FULL_OPACITY = 1.0;
 const double SIXTY_PERCENT_OPACITY = 0.6;
+const double TWENTY_PERCENT_OPACITY = 0.2;
 
 //sizes
 const double APP_BAR_PROFILE_RADIUS = 20;
@@ -48,6 +49,8 @@ const double POKEMON_CONTAINER_WIDTH = 152;
 const double POKEMON_ID_HEIGHT = 18;
 const double POKEMON_ID_WIDTH = 44;
 const double POKEBALL_PLACEHOLDER_RADIUS = 28;
+const double POKEBALL_PLACEHOLDER_BORDER_RADIUS = 32;
+
 const double HALF_POKEBALL_WIDTH = 64;
 const double CURRENT_PARTY_WIDTH = 42;
 const double REMOVE_BUTTON_SIZE = 15;
@@ -132,7 +135,7 @@ const TextStyle NUMBER_OF_PARTY = TextStyle(
 
 //decoration
 const BoxDecoration POKEMON_CONTAINER = BoxDecoration(
-  color: CONTAINER_BACKGROUND,
+  color: Colors.white,
     borderRadius: BorderRadius.all(
       Radius.circular(kBorderRadiusM),
     ));

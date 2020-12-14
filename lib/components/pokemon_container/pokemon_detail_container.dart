@@ -73,33 +73,48 @@ class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
 
     Consumer containerDetailsWidget =
         Consumer<PartyViewModel>(builder: (context, viewModel, child) {
-      return Container(
-        decoration: POKEMON_CONTAINER.copyWith(
-          border: (widget.onRemove != null ||
-                  viewModel.pokemonIsInParty(widget.pokemonId))
-              ? Border.all(
-                  color: Colors.green,
-                )
-              : null,
-        ),
-        height: POKEMON_CONTAINER_HEIGHT,
-        width: POKEMON_CONTAINER_WIDTH,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SvgPicture.asset(
-              SvgUtils.HALF_POKEBALL,
-              width: HALF_POKEBALL_WIDTH,
+      return Stack(
+        children: [
+          Container(
+            decoration: POKEMON_CONTAINER.copyWith(
+              border: (widget.onRemove != null ||
+                      viewModel.pokemonIsInParty(widget.pokemonId))
+                  ? Border.all(
+                      color: Colors.green,
+                    )
+                  : null,
             ),
-            PokemonId(
-              pokemonId: widget.pokemonId,
+            height: POKEMON_CONTAINER_HEIGHT,
+            width: POKEMON_CONTAINER_WIDTH,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SvgPicture.asset(
+                  SvgUtils.HALF_POKEBALL,
+                  width: HALF_POKEBALL_WIDTH,
+                ),
+                PokemonId(
+                  pokemonId: widget.pokemonId,
+                ),
+                pokemonName(),
+                PokemonTypesContainer(
+                  types: widget.pokemonTypes,
+                ),
+              ],
             ),
-            pokemonName(),
-            PokemonTypesContainer(
-              types: widget.pokemonTypes,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(kMarginXXXS),
+            child: Opacity(
+              opacity: TWENTY_PERCENT_OPACITY,
+              child: Container(
+                decoration: POKEMON_CONTAINER.copyWith(
+                  color: CONTAINER_BACKGROUND,
+                ),
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       );
     });
 

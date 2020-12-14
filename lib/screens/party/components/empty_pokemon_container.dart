@@ -14,29 +14,48 @@ class EmptyPokemonContainer extends StatelessWidget {
         child: Stack(
           overflow: Overflow.visible,
           children: [
-            Container(
-              decoration: POKEMON_CONTAINER,
-              height: POKEMON_CONTAINER_HEIGHT,
-              width: POKEMON_CONTAINER_WIDTH,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: kMarginPlus),
-                    child: Container(
-                      decoration: floatingButtonDecoration,
-                      child: CircleAvatar(
-                        radius: POKEBALL_PLACEHOLDER_RADIUS,
-                        backgroundColor: CONTAINER_BACKGROUND,
-                        child: Icon(
-                          Icons.add,
-                          color: Colors.black,
+            Stack(
+              children: [
+                Container(
+                  decoration: POKEMON_CONTAINER,
+                  height: POKEMON_CONTAINER_HEIGHT,
+                  width: POKEMON_CONTAINER_WIDTH,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: kMarginPlus),
+                        child: Container(
+                          decoration: floatingButtonDecoration,
+                          child: CircleAvatar(
+                            radius: POKEBALL_PLACEHOLDER_BORDER_RADIUS,
+                            backgroundColor: Colors.white,
+                            child: CircleAvatar(
+                              radius: POKEBALL_PLACEHOLDER_RADIUS,
+                              backgroundColor: CONTAINER_BACKGROUND,
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(kMarginXXXS),
+                  child: Opacity(
+                    opacity: TWENTY_PERCENT_OPACITY,
+                    child: Container(
+                      decoration: POKEMON_CONTAINER.copyWith(
+                        color: CONTAINER_BACKGROUND,
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             Positioned(
               top: POSITIONED_POKEBALL_TOP,
