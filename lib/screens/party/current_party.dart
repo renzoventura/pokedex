@@ -27,10 +27,14 @@ StreamBuilder<List<PartyPokemon>> _buildTaskList(
     builder: (context, AsyncSnapshot<List<PartyPokemon>> snapshot) {
       List<PartyPokemon> pokemonParty = snapshot.data ?? List();
       return GridView.builder(
+        shrinkWrap: true,
+        primary: false,
         itemCount: getIt<Config>().maxPartySize,
         itemBuilder: (_, index) {
+
           if (pokemonParty.length <= index)
             return EmptyPokemonContainer();
+
           PartyPokemon pokemon = pokemonParty[index];
           List<String> types = [];
           if (pokemon.typeOne.isNotNullAndNotEmpty) types.add(pokemon?.typeOne);

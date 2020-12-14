@@ -11,7 +11,6 @@ class PartyScreenMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingButtonNavigator(
         title: DEX_BUTTON_LABEL,
         onTap: () => Navigator.pop(context),
@@ -23,7 +22,8 @@ class PartyScreenMobile extends StatelessWidget {
           padding: EdgeInsets.only(
             top: kMarginXL,
           ),
-          child: Column(
+          child: ListView(
+            shrinkWrap: true,
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: kMarginXL),
@@ -39,9 +39,7 @@ class PartyScreenMobile extends StatelessWidget {
                   ],
                 ),
               ),
-              Expanded(
-                child: CurrentParty(),
-              ),
+              CurrentParty(),
             ],
           ),
         ),
