@@ -103,13 +103,16 @@ class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(kMarginXXXS),
-            child: Opacity(
-              opacity: TWENTY_PERCENT_OPACITY,
-              child: Container(
-                decoration: POKEMON_CONTAINER.copyWith(
-                  color: CONTAINER_BACKGROUND,
+          IgnorePointer(
+            ignoring: true,
+            child: Padding(
+              padding: const EdgeInsets.all(kMarginXXXS),
+              child: Opacity(
+                opacity: TWENTY_PERCENT_OPACITY,
+                child: Container(
+                  decoration: POKEMON_CONTAINER.copyWith(
+                    color: CONTAINER_BACKGROUND,
+                  ),
                 ),
               ),
             ),
