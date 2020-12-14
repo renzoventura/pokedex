@@ -6,7 +6,7 @@ import 'package:pokedex/components/current_party/mobile_current_party.dart';
 import 'package:pokedex/components/drawer/mobile_drawer.dart';
 import 'package:pokedex/components/floating_button_navigator.dart';
 import 'package:pokedex/constants/constants.dart';
-import 'package:pokedex/screens/dex/components/pokemon_list_container.dart';
+import 'package:pokedex/screens/dex/components/pokedex_list_container.dart';
 import 'package:pokedex/screens/dex/components/sorting_dropdown.dart';
 import 'package:pokedex/screens/dex/screens/poke_dex_screen.dart';
 import 'package:pokedex/screens/party/screens/party_screen.dart';
@@ -55,7 +55,7 @@ class PokeDexScreenMobile extends StatelessWidget {
                 ],
               ),
               Expanded(
-                child: PokemonListContainer(),
+                child: PokedexListContainer(),
               ),
             ],
           ),

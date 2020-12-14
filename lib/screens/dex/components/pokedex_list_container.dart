@@ -7,16 +7,16 @@ import 'package:pokedex/screens/dex/view_model/dex_view_model.dart';
 import 'package:pokedex/screens/party/view_model/party_view_model.dart';
 import 'package:provider/provider.dart';
 
-class PokemonListContainer extends StatefulWidget {
+class PokedexListContainer extends StatefulWidget {
   final int gridSize;
 
-  const PokemonListContainer({Key key, this.gridSize: MINIMUM_GRID_SIZE})
+  const PokedexListContainer({Key key, this.gridSize: MINIMUM_GRID_SIZE})
       : super(key: key);
   @override
-  _PokemonListContainerState createState() => _PokemonListContainerState();
+  _PokedexListContainerState createState() => _PokedexListContainerState();
 }
 
-class _PokemonListContainerState extends State<PokemonListContainer> {
+class _PokedexListContainerState extends State<PokedexListContainer> {
   ScrollController controller;
 
   void _scrollListener() {

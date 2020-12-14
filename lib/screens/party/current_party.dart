@@ -29,34 +29,24 @@ StreamBuilder<List<PartyPokemon>> _buildTaskList(
         itemCount: getIt<Config>().maxPartySize,
         itemBuilder: (_, index) {
           if (pokemonParty.length <= index)
-            return Column(
-              children: [
-                Expanded(child: EmptyPokemonContainer()),
-              ],
-            );
+            return EmptyPokemonContainer();
           PartyPokemon pokemon = pokemonParty[index];
           List<String> types = [];
           if (pokemon.typeOne.isNotNullAndNotEmpty) types.add(pokemon?.typeOne);
           if (pokemon.typeTwo.isNotNullAndNotEmpty) types.add(pokemon?.typeTwo);
 
-          return Column(
-            children: [
-              Expanded(
-                child: PokemonDetailContainer(
-                  updateName: (String name) {
-                    Provider.of<PartyViewModel>(context, listen: false)
-                        .updatePokemonName(pokemon, name);
-                  },
-                  pokemonTypes: types,
-                  pokemonName: pokemon.name,
-                  pokemonId: pokemon.pokemonId,
-                  pokemonImage: pokemon.image,
-                  onRemove: () =>
-                      Provider.of<PartyViewModel>(context, listen: false)
-                          .deletePokemon(pokemon),
-                ),
-              ),
-            ],
+          return PokemonDetailContainer(
+            updateName: (String name) {
+              Provider.of<PartyViewModel>(context, listen: false)
+                  .updatePokemonName(pokemon, name);
+            },
+            pokemonTypes: types,
+            pokemonName: pokemon.name,
+            pokemonId: pokemon.pokemonId,
+            pokemonImage: pokemon.image,
+            onRemove: () =>
+                Provider.of<PartyViewModel>(context, listen: false)
+                    .deletePokemon(pokemon),
           );
         },
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
