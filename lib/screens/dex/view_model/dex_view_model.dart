@@ -25,8 +25,6 @@ class DexViewModel extends BaseViewModel {
       if (response.isRight) pokemonDetails.add(response.right.value);
     } catch (e) {
       log(e.toString());
-    } finally {
-      setIdle();
     }
   }
 
@@ -49,20 +47,17 @@ class DexViewModel extends BaseViewModel {
           .getPokemonList(pokemonDetails.length, numberOfPokemons);
       if (response.isRight) {
         pokemonPageResponse = response.right.value;
-        // for (Results result in pokemonPageResponse.results) {
-        //   if ((result?.name?.isNotNullAndNotEmpty ?? false) &&
-        //       !pokemonDetails.map((e) => e.name).contains(result.name))
-        //     getPokemonByIdAndAdd(result?.name);
-        // }
-        await Future.forEach(pokemonPageResponse.results, (result) async {
-          if (!pokemonDetails.map((e) => e.name).contains(result.name))
-            getPokemonByIdAndAdd(result?.name);
-        });
+        var futures = <Future>[];
+        for (Results result in pokemonPageResponse.results) {
+          if ((result?.name?.isNotNullAndNotEmpty ?? false) &&
+              !pokemonDetails.map((e) => e.name).contains(result.name))
+            futures.add(getPokemonByIdAndAdd(result?.name));
+        }
+        await Future.wait(futures);
       }
     } catch (e) {
       log(e.toString());
     } finally {
-      print("ADDED ALL POKEMON");
       applySorting();
       setIdle();
     }
