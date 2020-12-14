@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/components/app_bar/mobile_app_bar.dart';
+import 'package:pokedex/components/app_bar/tablet_app_bar.dart';
 import 'package:pokedex/components/container_with_background.dart';
 import 'package:pokedex/components/drawer/mobile_drawer.dart';
 import 'package:pokedex/components/floating_button_navigator.dart';
@@ -15,7 +16,7 @@ class PartyScreenMobile extends StatelessWidget {
         title: DEX_BUTTON_LABEL,
         onTap: () => Navigator.pop(context),
       ),
-      appBar: MobileAppBar(),
+      appBar: MediaQuery.of(context).orientation == Orientation.portrait ? MobileAppBar() : TabletAppBar(),
       endDrawer: MobileDrawer(),
       body: ContainerWithBackground(
         child: Padding(

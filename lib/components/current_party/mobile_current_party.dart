@@ -60,10 +60,9 @@ StreamBuilder<List<PartyPokemon>> currentPartyList(bool isTablet) {
               ),
             ),
             FloatingButtonNavigator(
-
               title: PARTY_BUTTON_LABEL,
-              onTap: () => Navigator.pushNamedAndRemoveUntil(
-                  context, PartyScreen.id, ModalRoute.withName(PokeDexScreen.id)),
+              onTap: () => Navigator.pushNamedAndRemoveUntil(context,
+                  PartyScreen.id, ModalRoute.withName(PokeDexScreen.id)),
             ),
           ],
         );

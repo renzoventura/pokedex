@@ -25,16 +25,7 @@ class PartyViewModel extends BaseViewModel {
               ? pokemonDetails?.types[1]?.type?.name
               : null,
         );
-
         appDatabase.insertPokemonToParty(partyData);
-
-        // for (Types type in pokemonDetails.types) {
-        //   PartyType partyType = PartyType(
-        //     name: type.type.name,
-        //     pokemonId: pokemonDetails.id,
-        //   );
-        //   appDatabase.insertTag(partyType);
-        // }
       }
     } catch (e) {
       log(e.toString());
@@ -44,17 +35,6 @@ class PartyViewModel extends BaseViewModel {
       setIdle();
     }
   }
-
-  // getAllPokemons() async {
-  //   try {
-  //     setBusy();
-  //     pokemons = await appDatabase.getAllPokemons();
-  //   } catch (e) {
-  //     log(e.toString());
-  //   } finally {
-  //     setIdle();
-  //   }
-  // }
 
   deletePokemon(PartyPokemon pokemon) async {
     try {
@@ -85,7 +65,7 @@ class PartyViewModel extends BaseViewModel {
   }
 
   bool pokemonIsInParty(int id) {
-    for(PartyPokemon pokemon in pokemons) {
+    for (PartyPokemon pokemon in pokemons) {
       if (pokemon.pokemonId == id) return true;
     }
     return false;

@@ -11,7 +11,7 @@ class EmptyPokemonContainer extends StatelessWidget {
         height: POKEMON_WIDGET_HEIGHT,
         width: POKEMON_WIDGET_WIDTH,
         padding: const EdgeInsets.symmetric(
-            vertical: kMarginXXXL,
+          vertical: kMarginXXXL,
         ),
         child: Stack(
           overflow: Overflow.visible,

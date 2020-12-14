@@ -17,11 +17,11 @@ class TabletAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         AppBarLabel(
           label: POKEDEX,
-          onTap: () => Navigator.pushNamed(context, PokeDexScreen.id),
+          onTap: () => Navigator.pop(context),
           targetScreen: PokeDexScreen.id,
         ),
         SizedBox(
-          width: appbarLabelPadding,
+          width: APP_BAR_LABEL_PADDING,
         ),
         AppBarLabel(
           label: PARTY,
@@ -29,13 +29,13 @@ class TabletAppBar extends StatelessWidget implements PreferredSizeWidget {
           targetScreen: PartyScreen.id,
         ),
         SizedBox(
-          width: appbarLabelPadding,
+          width: APP_BAR_LABEL_PADDING,
         ),
         UserProfilePicture(
           radius: APP_BAR_PROFILE_RADIUS,
         ),
         SizedBox(
-          width: logoAppBarEndingMobilePadding,
+          width: APP_BAR_ENDING_MOBILE_PADDING,
         ),
       ],
       leading: FadeInImageContainer(

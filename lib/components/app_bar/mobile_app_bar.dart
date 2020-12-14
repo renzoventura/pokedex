@@ -14,14 +14,14 @@ class MobileAppBar extends StatelessWidget implements PreferredSizeWidget {
           onTap: () => Scaffold.of(context).openEndDrawer(),
           child: Padding(
             padding:
-                EdgeInsets.symmetric(horizontal: logoAppBarEndingMobilePadding),
+                EdgeInsets.symmetric(horizontal: APP_BAR_ENDING_MOBILE_PADDING),
             child: Center(
                 child: DrawerButton()),
           ),
         ),
       ],
       leading: Padding(
-        padding: EdgeInsets.only(left: logoAppBarLeadingMobilePadding),
+        padding: EdgeInsets.only(left: APP_BAR_LEADING_MOBILE_PADDING),
         child: FadeInImageContainer(
           image: AssetImage(ImageUtils.JM_LOGO),
         ),
@@ -34,31 +34,3 @@ class MobileAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => new Size.fromHeight(appBar.preferredSize.height);
 }
-
-//
-// class AppBarMobile extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       height: 50,
-//             color: Color(0xff333333),
-//     child: Row(
-//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//         children: [
-//           Padding(
-//             padding: EdgeInsets.only(left: logoAppBarMobilePadding),
-//             child: FadeInImageContainer(
-//               image: AssetImage(ImageUtils.JM_LOGO),
-//             ),
-//           ),
-//                   InkWell(
-//           onTap: () => Scaffold.of(context).openEndDrawer(),
-//           child: Text("drawer"),
-//         ),
-//         ],
-//       ),
-//     );
-//
-//   }
-//
-// }

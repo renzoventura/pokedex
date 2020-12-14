@@ -74,8 +74,8 @@ class _PokedexListContainerState extends State<PokedexListContainer> {
                       controller: controller,
                       child: Wrap(
                         direction: Axis.horizontal,
-                        runSpacing: 10,
-                        spacing: 10,
+                        runSpacing: WRAP_SPACINGS,
+                        spacing: WRAP_SPACINGS,
                         children: getPokemonList(),
                       ),
                     ),

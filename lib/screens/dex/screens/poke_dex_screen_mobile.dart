@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/components/app_bar/mobile_app_bar.dart';
+import 'package:pokedex/components/app_bar/tablet_app_bar.dart';
 import 'package:pokedex/components/container_with_background.dart';
 import 'package:pokedex/components/current_party/mobile_current_party.dart';
 import 'package:pokedex/components/drawer/mobile_drawer.dart';
@@ -22,7 +23,7 @@ class PokeDexScreenMobile extends StatelessWidget {
         onTap: () => Navigator.pushNamedAndRemoveUntil(
             context, PartyScreen.id, ModalRoute.withName(PokeDexScreen.id)),
       ),
-      appBar: MobileAppBar(),
+      appBar: MediaQuery.of(context).orientation == Orientation.portrait ? MobileAppBar() : TabletAppBar(),
       endDrawer: MobileDrawer(),
       body: ContainerWithBackground(
         child: Padding(

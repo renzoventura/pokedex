@@ -12,7 +12,8 @@ import 'package:pokedex/constants/constants.dart';
 class CurrentParty extends StatelessWidget {
   final int gridNumber;
 
-  const CurrentParty({Key key, this.gridNumber = MINIMUM_GRID_SIZE}) : super(key: key);
+  const CurrentParty({Key key, this.gridNumber = MINIMUM_GRID_SIZE})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return _buildTaskList(context, gridNumber);
@@ -41,53 +42,20 @@ StreamBuilder<List<PartyPokemon>> _buildTaskList(
           pokemonName: pokemon.name,
           pokemonId: pokemon.pokemonId,
           pokemonImage: pokemon.image,
-          onRemove: () =>
-              Provider.of<PartyViewModel>(context, listen: false)
-                  .deletePokemon(pokemon),
+          onRemove: () => Provider.of<PartyViewModel>(context, listen: false)
+              .deletePokemon(pokemon),
         ));
       }
-      while(pokemonWidgets.length < getIt<Config>().maxPartySize) {
+      while (pokemonWidgets.length < getIt<Config>().maxPartySize) {
         pokemonWidgets.add(EmptyPokemonContainer());
       }
-      return  Wrap(
+      return Wrap(
         alignment: WrapAlignment.center,
-          direction: Axis.horizontal,
-          runSpacing: 10,
-          spacing: 10,
-          children: pokemonWidgets,
-        );
-      // return GridView.builder(
-      //   shrinkWrap: true,
-      //   primary: false,
-      //   itemCount: getIt<Config>().maxPartySize,
-      //   itemBuilder: (_, index) {
-      //
-      //     if (pokemonParty.length <= index)
-      //       return EmptyPokemonContainer();
-      //
-      //     PartyPokemon pokemon = pokemonParty[index];
-      //     List<String> types = [];
-      //     if (pokemon.typeOne.isNotNullAndNotEmpty) types.add(pokemon?.typeOne);
-      //     if (pokemon.typeTwo.isNotNullAndNotEmpty) types.add(pokemon?.typeTwo);
-      //
-      //     return PokemonDetailContainer(
-      //       updateName: (String name) {
-      //         Provider.of<PartyViewModel>(context, listen: false)
-      //             .updatePokemonName(pokemon, name);
-      //       },
-      //       pokemonTypes: types,
-      //       pokemonName: pokemon.name,
-      //       pokemonId: pokemon.pokemonId,
-      //       pokemonImage: pokemon.image,
-      //       onRemove: () =>
-      //           Provider.of<PartyViewModel>(context, listen: false)
-      //               .deletePokemon(pokemon),
-      //     );
-      //   },
-      //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-      //     crossAxisCount: gridNumber,
-      //   ),
-      // );
+        direction: Axis.horizontal,
+        runSpacing: WRAP_SPACINGS,
+        spacing: WRAP_SPACINGS,
+        children: pokemonWidgets,
+      );
     },
   );
 }

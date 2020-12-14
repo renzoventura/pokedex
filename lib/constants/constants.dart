@@ -24,17 +24,23 @@ const double kMarginXXXL = 32.0;
 const double kMarginXXXXL = 36.0;
 const double kMarginXXXXXL = 40.0;
 
+//border radius
+const double kBorderRadiusS = 4.0;
+const double kBorderRadiusM = 12.0;
+const double kBorderRadius = 20.0;
+
+//wrapSpacings
+const double WRAP_SPACINGS = 10.0;
+
 //large margins
 const double VERTICAL_PADDING_POKEMON = 20;
 
 //sizedBox
-const double appbarLabelPadding = 52.0;
+const double APP_BAR_LABEL_PADDING = 52.0;
 
 //custom margins mobile
-const double logoAppBarLeadingMobilePadding = 28;
-const double logoAppBarEndingMobilePadding = 20;
-
-//custom margins mobile
+const double APP_BAR_LEADING_MOBILE_PADDING = 28;
+const double APP_BAR_ENDING_MOBILE_PADDING = 20;
 
 //opacity
 const double FULL_OPACITY = 1.0;
@@ -58,11 +64,6 @@ const double CURRENT_PARTY_WIDTH = 42;
 const double REMOVE_BUTTON_SIZE = 15;
 const double REMOVE_BUTTON_ICON = 10;
 const double EMPTY_POKEBALL_PLACEHOLDER_RADIUS = 60;
-
-//border radius
-const double kBorderRadiusS = 4.0;
-const double kBorderRadiusM = 12.0;
-const double kBorderRadius = 20.0;
 
 //styling
 const TextStyle APP_BAR_LABEL_TEXT_STYLE = TextStyle(
