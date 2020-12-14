@@ -12,37 +12,39 @@ class PartyScreenMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       floatingActionButton: FloatingButtonNavigator(
         title: DEX_BUTTON_LABEL,
         onTap: () => Navigator.pop(context),
       ),
-      appBar: MediaQuery.of(context).orientation == Orientation.portrait ? MobileAppBar() : TabletAppBar(),
+      appBar: MediaQuery.of(context).orientation == Orientation.portrait
+          ? MobileAppBar()
+          : TabletAppBar(),
       endDrawer: MobileDrawer(),
       body: ContainerWithBackground(
-        child: Padding(
-          padding: EdgeInsets.only(
-            top: kMarginXL,
-          ),
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: kMarginXL),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      ASH_PARTY,
-                      style: CHOOSE_YOUR_TEAM_TEXT_STYLE,
-                      textAlign: TextAlign.left,
-                    ),
-                    NumberOfPokemon(),
-                  ],
-                ),
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                left: kMarginXL,
+                right: kMarginXL,
+                top: kMarginXL,
               ),
-              CurrentParty(),
-            ],
-          ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    ASH_PARTY,
+                    style: CHOOSE_YOUR_TEAM_TEXT_STYLE,
+                    textAlign: TextAlign.left,
+                  ),
+                  NumberOfPokemon(),
+                ],
+              ),
+            ),
+            CurrentParty(),
+          ],
         ),
       ),
     );

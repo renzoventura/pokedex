@@ -1,8 +1,11 @@
 extension StringExtension on String {
-  bool get isNotNullAndNotEmpty => this != null && null != "";
-  bool get isNullOrEmpty => this == null || null == "";
+  bool get isNotNullAndNotEmpty => this != null && this != "";
+  bool get isNullOrEmpty => this == null || this == "";
 
-  String capitalize() => this.isNotNullAndNotEmpty
-      ? "${this[0].toUpperCase()}${this.substring(1)} "
-      : "";
+  String capitalize() {
+    if (isNullOrEmpty) return "";
+    return this.isNotNullAndNotEmpty
+        ? "${this[0].toUpperCase()}${this.substring(1)} "
+        : "";
+  }
 }

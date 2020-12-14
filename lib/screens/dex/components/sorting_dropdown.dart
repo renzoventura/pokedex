@@ -32,7 +32,7 @@ class _SortingDropdownState extends State<SortingDropdown> {
                   return DropdownMenuItem<SortingValues>(
                     value: classType,
                     child: Text(
-                      classType.toStringValue(),
+                      classType?.toStringValue() ?? "",
                       style: SORT_BY_VALUES_TEXT_STYLE,
                     ),
                   );

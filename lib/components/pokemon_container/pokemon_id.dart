@@ -17,7 +17,7 @@ class PokemonId extends StatelessWidget {
         child: Opacity(
           opacity: SIXTY_PERCENT_OPACITY,
           child: Text(
-            pokemonId.toPokemonNumber(),
+            pokemonId?.toPokemonNumber() ?? "",
             style: POKEMON_ID_TEXT_STYLE,
           ),
         ),

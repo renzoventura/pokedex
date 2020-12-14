@@ -3,12 +3,13 @@ extension IntExtension on int {
     if (this == null) {
       return "";
     } else {
-      if (this.toString().length == 1) {
-        return "#00$this";
+      int value = this.abs();
+      if (value.toString().length == 1) {
+        return "#00$value";
       } else if (this.toString().length == 2) {
-        return "#0$this";
+        return "#0$value";
       }
-      return "#$this";
+      return "#$value";
     }
   }
 }

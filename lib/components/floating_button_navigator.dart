@@ -5,7 +5,7 @@ class FloatingButtonNavigator extends StatelessWidget {
   final String title;
   final Function onTap;
 
-  const FloatingButtonNavigator({Key key, this.title, this.onTap})
+  const FloatingButtonNavigator({Key key, this.title : "", this.onTap})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

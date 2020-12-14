@@ -19,7 +19,7 @@ class PokemonTypeWidget extends StatelessWidget {
           vertical: kMarginXXXS,
         ),
         child: Text(
-          typeName.capitalize(),
+          typeName?.capitalize() ?? "",
           textAlign: TextAlign.center,
           style: POKEMON_TYPE_TEXT_STYLE,
         ),

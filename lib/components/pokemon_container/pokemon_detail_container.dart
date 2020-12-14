@@ -59,13 +59,19 @@ class _PokemonDetailContainerState extends State<PokemonDetailContainer> {
           cursorColor: Colors.black,
           selectionColor: Colors.white,
           textAlign: TextAlign.center,
-          onSubmitted: (value) {
-            widget.updateName(value);
+          onSubmitted: (String value) {
+            String newName = value;
+            if(value.isNullOrEmpty) {
+              newName = widget.pokemonName;
+            } else {
+              controller.text = newName;
+              widget.updateName(newName);
+            }
           },
         );
       } else {
         return Text(
-          widget.pokemonName.capitalize(),
+          widget?.pokemonName?.capitalize() ?? "",
           style: POKEMON_NAME_TEXT_STYLE,
         );
       }

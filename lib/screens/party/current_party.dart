@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:pokedex/components/pokemon_container/pokemon_detail_container.dart';
 import 'package:pokedex/config/config.dart';
@@ -30,21 +32,26 @@ StreamBuilder<List<PartyPokemon>> _buildTaskList(
       List<Widget> pokemonWidgets = [];
 
       for (PartyPokemon pokemon in pokemonParty) {
-        List<String> types = [];
-        if (pokemon.typeOne.isNotNullAndNotEmpty) types.add(pokemon?.typeOne);
-        if (pokemon.typeTwo.isNotNullAndNotEmpty) types.add(pokemon?.typeTwo);
-        pokemonWidgets.add(PokemonDetailContainer(
-          updateName: (String name) {
-            Provider.of<PartyViewModel>(context, listen: false)
-                .updatePokemonName(pokemon, name);
-          },
-          pokemonTypes: types,
-          pokemonName: pokemon.name,
-          pokemonId: pokemon.pokemonId,
-          pokemonImage: pokemon.image,
-          onRemove: () => Provider.of<PartyViewModel>(context, listen: false)
-              .deletePokemon(pokemon),
-        ));
+        try {
+          List<String> types = [];
+          if (pokemon.typeOne.isNotNullAndNotEmpty) types.add(pokemon?.typeOne);
+          if (pokemon.typeTwo.isNotNullAndNotEmpty) types.add(pokemon?.typeTwo);
+          pokemonWidgets.add(PokemonDetailContainer(
+            updateName: (String name) {
+              Provider.of<PartyViewModel>(context, listen: false)
+                  .updatePokemonName(pokemon, name);
+            },
+            pokemonTypes: types,
+            pokemonName: pokemon.name,
+            pokemonId: pokemon.pokemonId,
+            pokemonImage: pokemon.image,
+            onRemove: () => Provider.of<PartyViewModel>(context, listen: false)
+                .deletePokemon(pokemon),
+          ));
+        } catch(e) {
+          log(e.toString());
+        }
+
       }
       while (pokemonWidgets.length < getIt<Config>().maxPartySize) {
         pokemonWidgets.add(EmptyPokemonContainer());
