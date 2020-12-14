@@ -26,38 +26,68 @@ StreamBuilder<List<PartyPokemon>> _buildTaskList(
     stream: database.watchParty(),
     builder: (context, AsyncSnapshot<List<PartyPokemon>> snapshot) {
       List<PartyPokemon> pokemonParty = snapshot.data ?? List();
-      return GridView.builder(
-        shrinkWrap: true,
-        primary: false,
-        itemCount: getIt<Config>().maxPartySize,
-        itemBuilder: (_, index) {
+      List<Widget> pokemonWidgets = [];
 
-          if (pokemonParty.length <= index)
-            return EmptyPokemonContainer();
-
-          PartyPokemon pokemon = pokemonParty[index];
-          List<String> types = [];
-          if (pokemon.typeOne.isNotNullAndNotEmpty) types.add(pokemon?.typeOne);
-          if (pokemon.typeTwo.isNotNullAndNotEmpty) types.add(pokemon?.typeTwo);
-
-          return PokemonDetailContainer(
-            updateName: (String name) {
+      for (PartyPokemon pokemon in pokemonParty) {
+        List<String> types = [];
+        if (pokemon.typeOne.isNotNullAndNotEmpty) types.add(pokemon?.typeOne);
+        if (pokemon.typeTwo.isNotNullAndNotEmpty) types.add(pokemon?.typeTwo);
+        pokemonWidgets.add(PokemonDetailContainer(
+          updateName: (String name) {
+            Provider.of<PartyViewModel>(context, listen: false)
+                .updatePokemonName(pokemon, name);
+          },
+          pokemonTypes: types,
+          pokemonName: pokemon.name,
+          pokemonId: pokemon.pokemonId,
+          pokemonImage: pokemon.image,
+          onRemove: () =>
               Provider.of<PartyViewModel>(context, listen: false)
-                  .updatePokemonName(pokemon, name);
-            },
-            pokemonTypes: types,
-            pokemonName: pokemon.name,
-            pokemonId: pokemon.pokemonId,
-            pokemonImage: pokemon.image,
-            onRemove: () =>
-                Provider.of<PartyViewModel>(context, listen: false)
-                    .deletePokemon(pokemon),
-          );
-        },
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: gridNumber,
-        ),
-      );
+                  .deletePokemon(pokemon),
+        ));
+      }
+      while(pokemonWidgets.length < getIt<Config>().maxPartySize) {
+        pokemonWidgets.add(EmptyPokemonContainer());
+      }
+      return  Wrap(
+        alignment: WrapAlignment.center,
+          direction: Axis.horizontal,
+          runSpacing: 10,
+          spacing: 10,
+          children: pokemonWidgets,
+        );
+      // return GridView.builder(
+      //   shrinkWrap: true,
+      //   primary: false,
+      //   itemCount: getIt<Config>().maxPartySize,
+      //   itemBuilder: (_, index) {
+      //
+      //     if (pokemonParty.length <= index)
+      //       return EmptyPokemonContainer();
+      //
+      //     PartyPokemon pokemon = pokemonParty[index];
+      //     List<String> types = [];
+      //     if (pokemon.typeOne.isNotNullAndNotEmpty) types.add(pokemon?.typeOne);
+      //     if (pokemon.typeTwo.isNotNullAndNotEmpty) types.add(pokemon?.typeTwo);
+      //
+      //     return PokemonDetailContainer(
+      //       updateName: (String name) {
+      //         Provider.of<PartyViewModel>(context, listen: false)
+      //             .updatePokemonName(pokemon, name);
+      //       },
+      //       pokemonTypes: types,
+      //       pokemonName: pokemon.name,
+      //       pokemonId: pokemon.pokemonId,
+      //       pokemonImage: pokemon.image,
+      //       onRemove: () =>
+      //           Provider.of<PartyViewModel>(context, listen: false)
+      //               .deletePokemon(pokemon),
+      //     );
+      //   },
+      //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      //     crossAxisCount: gridNumber,
+      //   ),
+      // );
     },
   );
 }

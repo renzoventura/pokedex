@@ -18,7 +18,7 @@ class DexViewModel extends BaseViewModel {
     if (pokemonDetails.isEmpty) getPokemons();
   }
 
-  getPokemonByIdAndAdd(String pokemonName) async {
+  Future getPokemonByIdAndAdd(String pokemonName) async {
     try {
       Either<Problem, PokemonDetails> response =
           await pokemonService.getPokemonDetailByName(pokemonName);
@@ -47,10 +47,13 @@ class DexViewModel extends BaseViewModel {
           .getPokemonList(pokemonDetails.length, numberOfPokemons);
       if (response.isRight) {
         pokemonPageResponse = response.right.value;
+        var futures = <Future>[];
         for (Results result in pokemonPageResponse.results) {
-          if (result?.name?.isNotNullAndNotEmpty ?? false)
-            await getPokemonByIdAndAdd(result?.name);
+          if ((result?.name?.isNotNullAndNotEmpty ?? false) &&
+              !pokemonDetails.map((e) => e.name).contains(result.name))
+            futures.add(getPokemonByIdAndAdd(result?.name));
         }
+        await Future.wait(futures);
       }
     } catch (e) {
       log(e.toString());
@@ -90,6 +93,4 @@ class DexViewModel extends BaseViewModel {
       setIdle();
     }
   }
-
-
 }

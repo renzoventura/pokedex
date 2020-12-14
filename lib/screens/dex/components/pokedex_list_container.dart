@@ -46,17 +46,16 @@ class _PokedexListContainerState extends State<PokedexListContainer> {
           List<Widget> pokemonWidgets = [];
           if (dexViewModel.pokemonDetails != null) {
             for (PokemonDetails pokemon in dexViewModel.pokemonDetails) {
-              pokemonWidgets.add(Center(
-                  child: PokemonDetailContainer(
+              pokemonWidgets.add(PokemonDetailContainer(
                 onAdd: () async {
-                  await Provider.of<PartyViewModel>(context, listen: false)
-                      .addPokemonToParty(pokemon);
+              await Provider.of<PartyViewModel>(context, listen: false)
+                  .addPokemonToParty(pokemon);
                 },
                 pokemonId: pokemon.id,
                 pokemonName: pokemon.name,
                 pokemonTypes: pokemon.types.map((e) => e.type.name).toList(),
                 pokemonImage: pokemon.sprites.frontDefault,
-              )));
+              ));
             }
           }
           return pokemonWidgets;
@@ -71,11 +70,14 @@ class _PokedexListContainerState extends State<PokedexListContainer> {
               Column(
                 children: [
                   Expanded(
-                    child: GridView.count(
+                    child: SingleChildScrollView(
                       controller: controller,
-                      crossAxisCount: widget.gridSize,
-                      mainAxisSpacing: VERTICAL_PADDING_POKEMON,
-                      children: getPokemonList(),
+                      child: Wrap(
+                        direction: Axis.horizontal,
+                        runSpacing: 10,
+                        spacing: 10,
+                        children: getPokemonList(),
+                      ),
                     ),
                   ),
                 ],
